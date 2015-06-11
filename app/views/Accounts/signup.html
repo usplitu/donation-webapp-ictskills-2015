@@ -1,0 +1,26 @@
+#{extends 'main.html' /}
+#{set title:'Signup for Abamo' /}
+#{set activePage: 'signup' /}
+#{include 'nav.html' /}
+
+<section class="ui form segment">
+  <form action="/register" method="POST">
+    <label> <input type="checkbox" name="usCitizen"> Tick to
+    confirm you are a citizen of the USA
+   </label>
+   <div class="control-group">
+     <div class="controls">
+       <label class="control-label"> First Name: </label>
+       <input type="text" name="firstName">
+       <label class="control-label"> Last Name: </label>
+       <input type="text" name="lastName">
+       <label class="control-label"> Email: </label>
+       <input type="text" name="email">
+       <label class="control-label"> Password: </label>
+       <input type="text" name="password">       
+     </div> 
+     <div class="ui hidden divider"></div> 
+     <button type="submit" class="ui blue submit button"> Signup </button>     
+   </div>
+  </form>
+</section> 

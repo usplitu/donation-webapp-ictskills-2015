@@ -3,11 +3,52 @@
 #{set activePage: 'donation' /}
 #{include 'nav.html' /}
 
-<section class="ui center aligned segment">
-  <h1>
-   Welcome
-  </h1>
-    <p>
-     Please give generously.
-    </p>
-</section>    
+<section class="ui form segment">
+<h4> 
+   Welcome ${user.firstName}
+</h4>
+   <h5>Please give generously </h5>
+   <form action="/donation/donate" method="POST">
+   <div class="control-group">
+     <div class="controls">
+       <label class="control-label">
+       Select an amount:
+       </label>
+       <select name = "amountDonated">
+       <option value="50">
+         $50
+       </option>
+       <option value="100">
+         $100
+       </option>
+       <option value="1000" selected>
+         $1000
+       </option>
+       </select>
+       <div>    
+       <div class="ui hidden divider"></div> 
+       <label class="radio">
+         <input type="radio" name="methodDonated" value="paypal" checked="checked">
+           PayPal
+       </label>
+       <div class="ui hidden divider"></div>
+       <label class="radio">
+         <input type="radio" name="methodDonated" value="direct">
+           Direct
+       </label> 
+       </div>     
+     </div>
+     <div class="ui hidden divider"></div>
+     <button type="submit" class="ui blue submit button"> Donate </button> 
+   </div>
+   </form>
+   <hr>
+   <p>
+    Amount target achieved
+   </p>
+   <div class="progress">
+     <div class="bar" style="width: ${progress}"> </div>
+   </div>   
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"> </script>
+   <script src="assets/js/bootstrap.js">   
+   </section>    

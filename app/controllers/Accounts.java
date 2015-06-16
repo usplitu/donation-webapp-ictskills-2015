@@ -22,8 +22,8 @@ public class Accounts extends Controller
 	{
 		Logger.info(usCitizen + " " + firstName + " " + lastName + " " + email + " " + password);
 		User user = new User(usCitizen, firstName, lastName, email, password);
-		user.save();
-		index();
+		user.save();		
+		login();
 	}
 
 	public static void login()
@@ -57,7 +57,7 @@ public class Accounts extends Controller
 		{
 			Logger.info("Successfull authentication of " + user.firstName + " " + user.lastName);
 			session.put("logged_in_userid", user.id);
-			// DonationController.index();
+			DonationController.index();
 		}
 		else
 		{

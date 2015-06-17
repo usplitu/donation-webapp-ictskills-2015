@@ -1,38 +1,34 @@
-#{extends 'main.html' /}
-#{set title:'Donation Request' /}
-#{set activePage: 'report' /}
-#{include 'nav.html' /}
+#{extends 'main.html' /} #{set title:'Donation Request' /} #{set
+activePage: 'report' /} #{include 'nav.html' /}
 
 
 
 
 <section class="ui segment">
-  <h2 class="ui orange header">
-   <i class="table icon"></i>
-   <div class="content">
-     List Donations   
-   </div>
-  </h2>    
-  <ol class="ui list">
-    <table class="ui table">
-      <thead>
-        <tr>
-          <th>Donors</th>
-          <th>Amount($)</th> 
-          <th>Method donated</th>                             
-        </tr>
-      </thead>          
-      <tbody>  
-        #{list items:donations, as:'donation'}
-          <tr>      
-            <td>${donation.from.email}</td>                   
-            <td>${donation.received}</td> 
-            <td>${donation.methodDonated}</td>                                                
-          </tr>    
-        #{/list}
-      </tbody>
-    </table>       
-  </ol>
+	<h2 class="ui orange header">
+		<i class="table icon"></i>
+		<div class="content">List Donations</div>
+	</h2>
+	<ol class="ui list">
+		<table class="ui table">
+			<thead>
+				<tr>
+					<th>Donors</th>
+					<th>Amount($)</th>
+					<th>Method donated</th>
+				</tr>
+			</thead>
+			<tbody>
+				#{list items:donations, as:'donation'}
+				<tr>
+					<td>${donation.from.email}</td>
+					<td>${donation.received}</td>
+					<td>${donation.methodDonated}</td>
+				</tr>
+				#{/list}
+			</tbody>
+		</table>
+	</ol>
 </section>
 
 

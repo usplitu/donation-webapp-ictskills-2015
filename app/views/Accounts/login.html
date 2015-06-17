@@ -1,19 +1,20 @@
-#{extends 'main.html' /}
-#{set title:'Login to donate to Abamo' /}
-#{set activePage: 'login' /}
-#{include 'nav.html' /}
+#{extends 'main.html' /} #{set title:'Login to donate to Abamo' /} #{set
+activePage: 'login' /} #{include 'nav.html' /}
 
 <section class="ui form segment">
-  <form action="/authenticate" method="POST">
-   <div class="control-group">
-     <div class="controls">
-       <label class="control-label"> Email: </label>
-       <input type="text" name="email" placeholder="Email">
-       <label class="control-label"> Password: </label>
-       <input type="password" name="password">
-     </div>  
-     <div class="ui hidden divider"></div>   
-     <button type="submit" class="ui blue submit button"> Login </button>     
-   </div>
-  </form>
-</section>   
+	<form class="ui form" action="/authenticate" method="POST">
+		<div class="field">
+			<label> Email: </label> <input type="text" name="email"
+				placeholder="Email">
+		</div>
+		<div class="field">
+			<label> Password: </label> <input type="password" name="password">
+		</div>
+		<div class="ui hidden divider"></div>
+		<button class="ui blue submit button">Login</button>
+		<div class="ui error message"></div>
+	</form>
+</section>
+
+
+<script src="@{'/public/javascripts/login.js'}"></script>

@@ -4,49 +4,51 @@
 #{include 'nav.html' /}
 
 <section class="ui form segment">
-<h4> 
-   Welcome ${user.firstName}
-</h4>
-   <h5>Please give generously </h5>
-   <form action="/donation/donate" method="POST">
-   <div class="control-group">
-     <div class="controls">
-       <label class="control-label">
-       Select an amount:
-       </label>
-       <select name = "amountDonated">
-       <option value="50">
-         $50
-       </option>
-       <option value="100">
-         $100
-       </option>
-       <option value="1000" selected>
-         $1000
-       </option>
-       </select>
-       <div>    
-       <div class="ui hidden divider"></div> 
-       <label class="radio">
-         <input type="radio" name="methodDonated" value="paypal" checked="checked">
-           PayPal
-       </label>
-       <div class="ui hidden divider"></div>
-       <label class="radio">
-         <input type="radio" name="methodDonated" value="direct">
-           Direct
-       </label> 
-       </div>     
-     </div>
-     <div class="ui hidden divider"></div>
-     <button type="submit" class="ui blue submit button"> Donate </button> 
-   </div>
-   </form>
-   <hr>
-   <p>
-    Amount target achieved
-   </p>   
-   <div class="ui successful green progress">
-    <div class="bar" style="width:${progress}%"></div>
-  </div>   
-   </section>    
+  <h4> 
+     Welcome ${user.firstName}
+  </h4>
+     <h5>Please give generously </h5>
+     <form class="ui form" action="/donation/donate" method="POST">
+      <div class="ui selection dropdown">        
+        <input name="amountDonated" type="hidden">      
+        <div class="default text">Amount</div>
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          <div class="item" data-value="100">$100</div>
+          <div class="item" data-value="500">$500</div>
+          <div class="item" data-value="1000">$1000</div>
+        </div>
+      </div>
+      <div class="ui hidden divider"></div>
+      <div class="grouped fields">
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input id="paypal" name="methodDonated" value="paypal" type="radio" checked="checked">             
+            <label for="paypal">PayPal</label>
+          </div>
+        </div>       
+        <div class="field">
+          <div class="ui radio checkbox">
+            <input id="direct" name="methodDonated" value="direct" type="radio"> 
+            <label for="direct">Direct</label>
+          </div>
+        </div>
+      </div>
+      <div class="ui hidden divider"></div>
+      <button type="submit" class="ui blue submit button"> Donate </button> 
+      <div class="ui error message"></div>     
+     </form>
+     <hr>
+     <p>
+      Amount target achieved
+     </p>   
+     <div class="ui successful green progress">
+      <div class="bar" style="width:${progress}%"></div>        
+    </div>  
+    <div class="ui orange big label">${progress} target achieved to date!</div>     
+</section>    
+
+<script src="@{'/public/javascripts/donate.js'}"></script>
+<script>
+  $('#progress').progress('increment', '${progress}'); 
+</script>

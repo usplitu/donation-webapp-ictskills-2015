@@ -2,7 +2,6 @@ package models;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 
-import javax.persistence.Entity;
 import javax.persistence.Table;
 
 import java.util.List;
@@ -11,7 +10,7 @@ import java.util.ArrayList;
 import javax.persistence.OneToMany;
 
 import play.db.jpa.Model;
-import play.db.jpa.Blob;
+
 
 @Entity
 public class User extends Model

@@ -54,7 +54,7 @@ public class DonationController extends Controller
 
 	private static long getDonationTarget()
 	{
-		return 10000;
+		return 20000;
 	}
 
 	public static String getPercentTargetAchieved()

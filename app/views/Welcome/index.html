@@ -1,23 +1,25 @@
 #{extends 'main.html' /} #{set title:'Donation Request' /} #{set
 activePage: 'welcome' /} #{include 'nav.html' /}
 
+<section class="ui segment">
+  <h1 class = "ui large header">Welcome</h1>
+  <div class="ui four column aligned relaxed fitted stackable grid">
+    <div class="column">
+      <p>
+	    <i> Homer for president. </i>
+	  </p>
+	  <p>
+	    <i> Time for a change </i>
+	  <p>Out with Boring Abamo.</p>
+	  <p>Giving has never been so easy.</p>
+	  <p>
+	    Just click <a href="/login"> here </a> to log in.
+	  </p>
+	  <p>Then go to the Donation page and empty your wallet </p>	
+    </div>
+    <div class="left aligned column">
+      <img src="/public/images/homer.gif">
+    </div>
+  </div>  
+</section> 
 
-<h1>Welcome</h1>
-<table>
-	<tr>
-		<td>
-			<p>
-				<i> Homer for president. </i>
-			</p>
-			<p>
-				<i> Time for a change </i>
-			<p>Out with Boring Abamo.</p>
-			<p>Giving has never been so easy.</p>
-			<p>
-				Just click <a href="/login"> here </a> to log in.
-			</p>
-			<p>Then go to the Donation page and empty your wallet</p>
-		</td>
-		<td><img src="/public/images/homer.gif"></td>
-	</tr>
-</table>

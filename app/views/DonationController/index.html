@@ -3,10 +3,10 @@
 #{set activePage: 'donation' /} 
 #{include 'nav.html' /}
 
-<section class="ui form segment">
-	<h4>
+<section class="ui form segment" id = "background">
+	<h2 class = "ui orange header" >
 		Welcome ${user.firstName} 
-	</h4>
+	</h2>
 	<h5>Please give generously</h5>
 	<form class="ui form" action="/donation/donate" method="POST">
 		<div class="ui selection dropdown">

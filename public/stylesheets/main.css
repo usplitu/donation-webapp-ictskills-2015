@@ -1,0 +1,15 @@
+#background
+{
+  background-color: #ffffa4;
+  box-shadow: 10px 10px 5px grey;	
+}
+
+
+
+/* nav bar has shadow around it */
+#navbar
+{
+   box-shadow: 10px 10px 5px grey;		
+}
+
+

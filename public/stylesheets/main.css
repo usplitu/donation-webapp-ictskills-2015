@@ -4,7 +4,17 @@
   box-shadow: 10px 10px 5px grey;	
 }
 
-
+/* used on logout to draw user's attention to either signup or login */
+#attention
+{
+    width: 1000px;
+    padding: 25px;
+    border: 25px solid navy;
+    margin: 25px;	
+	
+	
+	
+}
 
 /* nav bar has shadow around it */
 #navbar

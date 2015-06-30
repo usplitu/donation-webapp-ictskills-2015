@@ -1,6 +1,5 @@
-$('.ui.dropdown')
-  .dropdown()
-;
+$('.ui.checkbox').checkbox();
+$('.ui.dropdown').dropdown();
 
 $('.ui.form')
 .form({

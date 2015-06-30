@@ -1,3 +1,4 @@
+$('.ui.checkbox').checkbox();
 $('.ui.form')
 .form({
   firstName: {

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -19,13 +20,16 @@ public class Donation extends Model
 {
   public long received;
   public String methodDonated;
+  // date residence registered
+  public Date donateDate;
   @ManyToOne
   public User from;
 
   public Donation(User from, long received, String methodDonated)
   {
-    this.received = received;
+    this.received      = received;
     this.methodDonated = methodDonated;
-    this.from = from;
+    this.donateDate    = new Date();
+    this.from          = from;
   }
 }

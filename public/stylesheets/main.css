@@ -1,7 +1,14 @@
+/* used on segments in each page to give a uniform background colour and shadowing */
 #background
 {
   background-color: #ffffa4;
   box-shadow: 10px 10px 5px grey;	
+}
+
+/* same as #background with no shadow. Used in divs */
+#bckgrdnoshad
+{
+  background-color: #ffffa4;  
 }
 
 /* used on logout to draw user's attention to either signup or login */
@@ -21,5 +28,12 @@
 {
    box-shadow: 10px 10px 5px grey;		
 }
+
+/*distinguish headers in red */
+#hdrred
+{
+  color: #ff8080;	
+}
+
 
 

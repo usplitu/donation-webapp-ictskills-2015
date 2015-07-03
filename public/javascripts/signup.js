@@ -1,4 +1,5 @@
 $('.ui.checkbox').checkbox();
+$('.ui.dropdown').dropdown();
 $('.ui.form')
 .form({
   firstName: {
@@ -19,6 +20,28 @@ $('.ui.form')
         }
       ]
     },
+  state: {
+      identifier : 'state',
+      rules: [
+        {
+          type   : 'empty',
+          prompt : 'Please select a state'
+        }
+      ]
+    },  
+  age: {
+      identifier : 'age',
+      rules: [
+        {
+          type   : 'not[0]',
+          prompt : 'You cannot select a zero age'
+        },      
+        {
+          type   : 'integer',
+          prompt : 'Please enter a valid age'
+        }
+      ]
+    },    
   email: {
       identifier : 'email',
       rules: [
@@ -38,6 +61,10 @@ $('.ui.form')
         {
           type   : 'empty',
           prompt : 'Please enter your password'
+        },
+        {
+          type   : 'length[6]',
+          prompt : 'Your password must be at least 6 characters'
         }
       ]
     }

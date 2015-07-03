@@ -3,42 +3,112 @@
 #{set activePage: 'signup' /} 
 #{include 'nav.html' /}
 
-<section class="ui form segment" id = "background">
-	<form class="ui form" action="/register" method="POST">
-	    <div class="field">
-          <div class="ui checkbox">
-            <input type="checkbox" id = "usCitizen"  name="usCitizen">
-            <label for="usCitizen">Tick to confirm you are a citizen of the USA</label>
-          </div>
-        </div>     
-		<div class="ui two column grid">
-          <div class="column">
-		   <div class="field">
-	          <label> First Name: </label> <input type="text" name="firstName"
-			     	placeholder="First Name">
-		   </div>
-		   <div class="field">
-		     <label> Last Name: </label> <input type="text" name="lastName"
-				placeholder="Last Name">
-		  </div>
-		  <div class="field">
-			<label> Email: </label> <input type="text" name="email"
-				placeholder="Email">
-		  </div>
-		  <div class="field">
-			<label> Password: </label>
-			<div class="ui icon input">
-              <input type="password" name="password">
-              <i class="lock icon"></i>
-            </div>
-		  </div>
-		  <div class="ui hidden divider"></div>
-		  <button class="ui blue submit button">Signup</button>
-		  <div class="ui error message"></div>
-		 </div>
-		</div>
-	</form>
+<section class="ui segment" id = "background">
+  <h3 class = "ui header" id="hdrred"> Sign up here ... </h3>
 </section>
+<section class="ui form segment" id="background">
+  <form action="/register" method="POST" class="ui form"> 
+    <div class="ui fluid form segment" id="bckgrdnoshad">    
+      <div class="field">
+        <div class="ui checkbox">
+          <input type="checkbox" id = "usCitizen"  name="usCitizen">
+          <label for="usCitizen">Tick to confirm you are a citizen of the USA</label>
+        </div>
+      </div>    
+      <div class="two fields">
+        <div class="field">
+          <label>First Name:</label>
+          <input placeholder="First Name" type="text" name="firstName">
+        </div>
+        <div class="field">
+          <label>Last Name:</label>
+          <input placeholder="Last Name" type="text" name="lastName">
+        </div>
+      </div> 
+      <div class="two fields">
+        <div class="field">
+          <label>Email:</label>
+          <input placeholder="Email" type="text" name="email">
+        </div>
+        <div class="field">
+          <label>Password:</label>
+          <div class="ui left icon input">
+            <input type="password" name="password">
+            <i class="lock icon"></i>
+          </div>        
+        </div>
+      </div>
+      <div class="two fields">
+        <div class="field">
+          <label>Age:</label>
+          <input placeholder="Age" type="number" name="age">
+        </div>
+        <div class="field">
+          <label>Location (State)</label>        
+          <div class="ui selection dropdown">
+		    <input name="state" type="hidden">
+			<div class="default text">State</div>
+			<i class="dropdown icon"></i>
+			<div class="menu">
+			  <div class="item" data-value="Alabama">Alabama</div>
+			  <div class="item" data-value="Alaska">Alaska</div>
+			  <div class="item" data-value="Arizona">Arizona</div>
+			  <div class="item" data-value="Arkansas">Arkansas</div>
+			  <div class="item" data-value="California">California</div>
+			  <div class="item" data-value="Colorado">Colorado</div>
+			  <div class="item" data-value="Connecticut">Connecticut</div>
+			  <div class="item" data-value="District of Columbia">District of Columbia</div>
+		      <div class="item" data-value="Florida">Florida</div>
+			  <div class="item" data-value="Georgia">Georgia</div>
+			  <div class="item" data-value="Hawaii">Hawaii</div>
+			  <div class="item" data-value="Idaho">Idaho</div>
+			  <div class="item" data-value="Illinois">Illinois</div>
+			  <div class="item" data-value="Indiana">Indiana</div>
+			  <div class="item" data-value="Kansas">Kansas</div>
+			  <div class="item" data-value="Kentucky">Kentucky</div>
+			  <div class="item" data-value="Louisiana">Louisiana</div>
+			  <div class="item" data-value="Maine">Maine</div>
+			  <div class="item" data-value="Maryland">Maryland</div>
+			  <div class="item" data-value="Massachusetts">Massachusetts</div>
+			  <div class="item" data-value="Michigan">Michigan</div>	
+			  <div class="item" data-value="Minnesota">Minnesota</div>
+              <div class="item" data-value="Mississippi">Mississippi</div>
+              <div class="item" data-value="Missouri">Missouri</div>
+              <div class="item" data-value="Montana">Montana</div>
+              <div class="item" data-value="Nebraska">Nebraska</div>
+              <div class="item" data-value="Nevada">Nevada</div>
+              <div class="item" data-value="New Hampshire">New Hampshire</div>
+              <div class="item" data-value="New Jersey">New Jersey</div>
+              <div class="item" data-value="New Mexico">New Mexico</div>
+              <div class="item" data-value="New York">New York</div>
+              <div class="item" data-value="North Carolina">North Carolina</div>
+              <div class="item" data-value="North Dakota">North Dakota</div>
+              <div class="item" data-value="Ohio">Ohio</div>
+              <div class="item" data-value="Oklahoma">Oklahoma</div>
+              <div class="item" data-value="Oregon">Oregon</div>
+              <div class="item" data-value="Pennsylvania">Pennsylvania</div>
+              <div class="item" data-value="Rhode Island">Rhode Island</div>
+              <div class="item" data-value="South Carolina">South Carolina</div>
+              <div class="item" data-value="South Dakota">South Dakota</div>
+              <div class="item" data-value="Tennessee">Tennessee</div>
+              <div class="item" data-value="Texas">Texas</div>
+              <div class="item" data-value="Utah">Utah</div>
+              <div class="item" data-value="Vermont">Vermont</div>
+              <div class="item" data-value="Virginia">Virginia</div>
+              <div class="item" data-value="Washington">Washington</div>
+              <div class="item" data-value="West Virginia">West Virginia</div>
+              <div class="item" data-value="Wisconsin">Wisconsin</div>
+              <div class="item" data-value="Wyoming">Wyoming</div>	
+            </div> <!--  div class = "menu" -->
+	      </div> <!-- ui selection dropdown -->
+        </div> <!-- state field -->
+      </div> <!--  two fields for age/state -->
+      <button class="ui blue submit button">Signup</button>
+      <div class="ui error message"></div>
+      <img class="ui tiny right floated image" src="/public/images/usaflagsmall.png">
+    </div> <!-- ui fluid form segment -->
+  </form>
+</section> 
 
 <script src="@{'/public/javascripts/signup.js'}"></script>
 

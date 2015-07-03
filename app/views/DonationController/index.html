@@ -4,51 +4,51 @@
 #{include 'nav.html' /}
 
 <section class="ui form segment" id = "background">
-	<h2 class = "ui orange header" >
-		Welcome ${user.firstName} 
-	</h2>
-	<h5>Please give generously</h5>
-	<form class="ui form" action="/donation/donate" method="POST">
-		<div class="ui selection dropdown">
-			<input name="amountDonated" type="hidden">
-			<div class="default text">Amount</div>
-			<i class="dropdown icon"></i>
-			<div class="menu">
-				<div class="item" data-value="100">$100</div>
-				<div class="item" data-value="500">$500</div>
-				<div class="item" data-value="1000">$1000</div>
-			</div>
+  <h2 class = "ui orange header" >
+    Welcome ${user.firstName} 
+  </h2>
+  <h5>Please give generously</h5>
+  <form class="ui form" action="/donation/donate" method="POST">
+    <div class="ui selection dropdown">
+	  <input name="amountDonated" type="hidden">
+	  <div class="default text">Amount</div>
+	  <i class="dropdown icon"></i>
+	    <div class="menu">
+		  <div class="item" data-value="100">$100</div>
+	      <div class="item" data-value="500">$500</div>
+		  <div class="item" data-value="1000">$1000</div>
 		</div>
-		<div class="ui hidden divider"></div>
-		<div class="grouped fields">
-			<div class="field">
-				<div class="ui radio checkbox">
-					<input id="paypal" name="methodDonated" value="paypal" type="radio"
-						checked="checked"> <label for="paypal">PayPal</label>
-				</div>
-			</div>
-			<div class="field">
-				<div class="ui radio checkbox">
-					<input id="direct" name="methodDonated" value="direct" type="radio">
-					<label for="direct">Direct</label>
-				</div>
-			</div>
+	</div> <!-- ui selection dropdown -->
+	<div class="ui hidden divider"></div>
+	<div class="grouped fields">
+	  <div class="field">
+	    <div class="ui radio checkbox">
+		  <input id="paypal" name="methodDonated" value="paypal" type="radio"
+					checked="checked"> <label for="paypal">PayPal</label>
+    	</div>
+	  </div>
+	  <div class="field">
+	    <div class="ui radio checkbox">
+		  <input id="direct" name="methodDonated" value="direct" type="radio">
+		  <label for="direct">Direct</label>
 		</div>
-		<div class="ui hidden divider"></div>
-		<button class="ui blue submit button">Donate</button>
-		<div class="ui error message"></div>
-	</form>
-	<hr>
-	<p>Amount target achieved</p>
-	<!-- Donation progress  -->
-	<div class="ui segment">
-		<div class="ui indicating progress" id="progress">
-			<div class="bar">
-				<div class="progress"></div>
-			</div>
-		</div>
+	  </div>
 	</div>
-	<div class="ui orange big label">${progress} target achieved to
+	<div class="ui hidden divider"></div>
+	<button class="ui blue submit button">Donate</button>
+	<div class="ui error message"></div>
+  </form>
+  <hr>
+  <p>Amount target achieved</p>
+  <!-- Donation progress  -->
+  <div class="ui segment">
+    <div class="ui indicating progress" id="progress">
+	  <div class="bar">
+	    <div class="progress"></div>
+	  </div>
+	</div>
+  </div>
+  <div class="ui orange big label">${progress} target achieved to
 		date!</div>
 </section>
 

@@ -1,37 +1,47 @@
 
 User(homer):
+    age: 77
     firstName: Homer
     lastName: Simpson
     email: homer@simpson.com
-    password: secret    
+    password: secret  
+    state: Arizona  
     usaCitizen: TRUE
     
  
 User(marge):
+    age: 40
     firstName: Marge
     lastName: Simpson
     email: marge@simpson.com
     password: secret
+    state: Delaware
     usaCitizen: TRUE
    
 User(bart):
+    age: 8
     firstName: Bart
     lastName: Simpson
     email: bart@simpson.com
     password: secret
+    state: Kentucky
     usaCitizen: TRUE
                      
 User(lisa):
+    age: 6 
     firstName: Lisa
     lastName: Simpson
     email: lisa@simpson.com
     password: secret 
+    state: Oregon
     usaCitizen: TRUE                              
  
 User(maggie):
+    age: 1
     firstName: Maggie
     lastName: Simpson
     email: maggie@simpson.com
     password: secret 
+    state: Utah
     usaCitizen: TRUE
          

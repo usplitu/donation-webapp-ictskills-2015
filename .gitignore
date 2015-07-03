@@ -2,15 +2,13 @@
 .*
 # ... except for these:
 !.gitignore
-!.classpath
-!.project
+
 
 
 # Ignore Play! working directory #
 war
 db
 eclipse
-lib
 log
 logs
 modules

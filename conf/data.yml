@@ -7,6 +7,10 @@ User(homer):
     password: secret  
     state: Arizona  
     usaCitizen: TRUE
+    addr1: Apt 5
+    addr2: 8 Privet Lane
+    city: Tempe
+    zip: 85252
     
  
 User(marge):
@@ -17,6 +21,10 @@ User(marge):
     password: secret
     state: Delaware
     usaCitizen: TRUE
+    addr1: House 2
+    addr2: 12 Milk Street
+    city: Lamington
+    zip: 12345
    
 User(bart):
     age: 8
@@ -26,6 +34,10 @@ User(bart):
     password: secret
     state: Kentucky
     usaCitizen: TRUE
+    addr1: Apt 7
+    addr2: 12 Amiens Street
+    city: Scottsdale
+    zip: 67254
                      
 User(lisa):
     age: 6 
@@ -34,7 +46,11 @@ User(lisa):
     email: lisa@simpson.com
     password: secret 
     state: Oregon
-    usaCitizen: TRUE                              
+    usaCitizen: TRUE 
+    addr1: The Penthouse
+    addr2: 7 The Stockbrokers
+    city: Portland
+    zip: 93587                             
  
 User(maggie):
     age: 1
@@ -44,4 +60,8 @@ User(maggie):
     password: secret 
     state: Utah
     usaCitizen: TRUE
+    addr1: Apt 1B
+    addr2: Jellycross Road
+    city: Moab
+    zip: 76389
          

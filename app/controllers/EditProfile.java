@@ -27,7 +27,8 @@ public class EditProfile extends Controller
     }
   }
 
-  public static void settingsChange(Long id, String firstName, String lastName, Integer age, String state)
+  public static void settingsChange(Long id, String firstName, String lastName, Integer age, String state,
+      String addr1, String addr2, String city, String zip)
   {
 
     Logger.info("just in settingsChange " + firstName);
@@ -52,6 +53,30 @@ public class EditProfile extends Controller
     {
       textString += " State: old: " + user.state + " new: " + state;
       user.state = state;
+    }
+
+    if (!city.isEmpty())
+    {
+      textString += " City: old: " + user.city + " new: " + city;
+      user.city = city;
+    }
+
+    if (!addr1.isEmpty())
+    {
+      textString += " Addr1: old: " + user.addr1 + " new: " + addr1;
+      user.addr1 = addr1;
+    }
+
+    if (!addr2.isEmpty())
+    {
+      textString += " Addr2: old: " + user.addr2 + " new: " + addr2;
+      user.addr2 = addr2;
+    }
+
+    if (!zip.isEmpty())
+    {
+      textString += " Zip: old: " + user.zip + " new: " + zip;
+      user.zip = zip;
     }
 
     if (!(age == null))

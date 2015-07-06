@@ -14,16 +14,23 @@ public class User extends Model
   public boolean usaCitizen;
   public String firstName;
   public String lastName;
-
-  @OneToMany(mappedBy = "from", cascade = CascadeType.ALL)
-  List<Donation> donations = new ArrayList<Donation>();
   public String email;
   public String password;
   public Integer age;
   public String state;
+  public String addr1;
+  public String addr2;
+  public String city;
+  public String zip;
+  
+
+  @OneToMany(mappedBy = "from", cascade = CascadeType.ALL)
+  List<Donation> donations = new ArrayList<Donation>();
+  
+  
 
   public User(boolean usaCitizen, String firstName, String lastName, String email, String password, Integer age,
-      String state)
+      String state, String addr1, String addr2, String city, String zip)
   {
     this.usaCitizen = usaCitizen;
     this.firstName = firstName;
@@ -32,6 +39,11 @@ public class User extends Model
     this.password = password;
     this.age = age;
     this.state = state;
+    this.addr1 = addr1;
+    this.addr2 = addr2;
+    this.city  = city;
+    this.zip   = zip;
+        
 
   }
 

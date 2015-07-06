@@ -22,10 +22,10 @@ public class Accounts extends Controller
   }
 
   public static void register(boolean usCitizen, String firstName, String lastName, String email, String password,
-      Integer age, String state)
+      Integer age, String state, String addr1, String addr2, String city, String zip)
   {
     Logger.info(usCitizen + " " + firstName + " " + lastName + " " + email + " " + password + " " + age + " " + state);
-    User user = new User(usCitizen, firstName, lastName, email, password, age, state);
+    User user = new User(usCitizen, firstName, lastName, email, password, age, state, addr1, addr2, city, zip);
     user.save();
     login();
   }

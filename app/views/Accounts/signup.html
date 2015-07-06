@@ -20,7 +20,7 @@
           <label for="usCitizen">Tick to confirm you are a citizen of the USA</label>
         </div>
       </div>    
-      <div class="two fields">
+      <div class="three fields">
         <div class="field">
           <label>First Name:</label>
           <input placeholder="First Name" type="text" name="firstName">
@@ -29,24 +29,25 @@
           <label>Last Name:</label>
           <input placeholder="Last Name" type="text" name="lastName">
         </div>
-      </div> 
-      <div class="two fields">
-        <div class="field">
-          <label>Email:</label>
-          <input placeholder="Email" type="text" name="email">
-        </div>
-        <div class="field">
-          <label>Password:</label>
-          <div class="ui left icon input">
-            <input type="password" name="password">
-            <i class="lock icon"></i>
-          </div>        
-        </div>
-      </div>
-      <div class="two fields">
         <div class="field">
           <label>Age:</label>
           <input placeholder="Age" type="number" name="age">
+        </div>
+      </div> 
+      <div class="two fields">
+        <div class="field">
+          <label>Address Line 1:</label>
+          <input placeholder="Address Line 1" type="text" name="addr1">
+        </div>
+        <div class="field">
+          <label>Address Line 2:</label>
+          <input placeholder="Address Line 2" type="text" name="addr2">      
+        </div>
+      </div>      
+      <div class="three fields">
+        <div class="field">
+          <label>City:</label>
+          <input placeholder="City" type="text" name="city">
         </div>
         <div class="field">
           <label>Location (State):</label>        
@@ -107,7 +108,24 @@
             </div> <!--  div class = "menu" -->
 	      </div> <!-- ui selection dropdown -->
         </div> <!-- state field -->
-      </div> <!--  two fields for age/state -->
+        <div class="field">
+          <label>Zip Code:</label>
+          <input placeholder="Zip" type="text" name="zip">
+        </div>
+      </div> <!--  three fields for city/state/zip -->
+      <div class="two fields">
+        <div class="field">
+          <label>Email:</label>
+          <input placeholder="Email" type="text" name="email">
+        </div>
+        <div class="field">
+          <label>Password:</label>
+          <div class="ui left icon input">
+            <input type="password" name="password">
+            <i class="lock icon"></i>
+          </div>        
+        </div>
+      </div><!--  two fields for email/password -->
       <button class="ui blue submit button">Signup</button>
       <div class="ui error message"></div>
       <img class="ui tiny right floated image" src="/public/images/usaflagsmall.png">

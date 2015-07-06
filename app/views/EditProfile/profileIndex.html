@@ -1,58 +1,61 @@
 #{extends 'main.html' /} 
-#{set title:'Signup for Abamo' /} 
-#{set activePage: 'signup' /} 
+#{set title:'Change your profile' /} 
+#{set activePage: 'profile' /} 
 #{include 'nav.html' /}
+
+
+
 
 <section class="ui segment" id="sectionshad">
   <h2 class="ui orange header">
-    <i class="users icon"></i>
+    <i class="settings icon"></i>
     <div class="content">
-     Sign up here ...
+     Edit your profile here....
     </div>   
-  </h2>   
+  </h2> 
 </section>
-<section class="ui form segment" id="background">
-  <form action="/register" method="POST" class="ui form"> 
+<section class="ui form segment" id = "background">
+  <form action="/settingsChange/${user.id}" method="POST" class="ui form">  
     <div class="ui fluid form segment" id="bckgrdnoshad">    
       <div class="field">
         <div class="ui checkbox">
-          <input type="checkbox" id = "usCitizen"  name="usCitizen">
+          <input type="checkbox" id = "usCitizen"  name="usCitizen" disabled = "disabled">
           <label for="usCitizen">Tick to confirm you are a citizen of the USA</label>
         </div>
       </div>    
       <div class="two fields">
         <div class="field">
           <label>First Name:</label>
-          <input placeholder="First Name" type="text" name="firstName">
+          <input placeholder=${user.firstName} type="text" name="firstName">
         </div>
         <div class="field">
           <label>Last Name:</label>
-          <input placeholder="Last Name" type="text" name="lastName">
+          <input placeholder=${user.lastName} type="text" name="lastName">
         </div>
       </div> 
       <div class="two fields">
         <div class="field">
           <label>Email:</label>
-          <input placeholder="Email" type="text" name="email">
+          <input placeholder=${user.email} type="text" name="email" disabled = "disabled">
         </div>
         <div class="field">
           <label>Password:</label>
           <div class="ui left icon input">
-            <input type="password" name="password">
+            <input type="password" name="password" disabled = "disabled">
             <i class="lock icon"></i>
-          </div>        
+          </div>              
         </div>
       </div>
       <div class="two fields">
         <div class="field">
           <label>Age:</label>
-          <input placeholder="Age" type="number" name="age">
+          <input placeholder=${user.age} type="number" name="age">
         </div>
         <div class="field">
           <label>Location (State):</label>        
           <div class="ui selection dropdown">
 		    <input name="state" type="hidden">
-			<div class="default text">State</div>
+			<div class="default text">${user.state}</div>
 			<i class="dropdown icon"></i>
 			<div class="menu">
 			  <div class="item" data-value="Alabama">Alabama</div>
@@ -106,14 +109,14 @@
               <div class="item" data-value="Wyoming">Wyoming</div>	
             </div> <!--  div class = "menu" -->
 	      </div> <!-- ui selection dropdown -->
-        </div> <!-- state field -->
-      </div> <!--  two fields for age/state -->
-      <button class="ui blue submit button">Signup</button>
+        </div> <!-- state field -->      
+      </div>    
+      <button class="ui blue submit button">Submit</button>     
+      <button class="ui blue submit button" onClick="goBack()">Cancel</button>      
       <div class="ui error message"></div>
       <img class="ui tiny right floated image" src="/public/images/usaflagsmall.png">
     </div> <!-- ui fluid form segment -->
   </form>
-</section> 
+</section>
 
-<script src="@{'/public/javascripts/signup.js'}"></script>
-
+<script src="@{'/public/javascripts/profileindex.js'}"></script>

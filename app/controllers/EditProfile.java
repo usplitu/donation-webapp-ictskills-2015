@@ -1,0 +1,74 @@
+package controllers;
+
+import play.*;
+import play.mvc.*;
+
+import java.util.*;
+
+import models.*;
+
+import org.json.simple.JSONObject;
+
+public class EditProfile extends Controller
+{
+
+  public static void profileIndex()
+  {
+    User user = Accounts.getCurrentUser();
+
+    if (user == null)
+    {
+      Logger.info("EditProfile class : Unable to getCurrentuser");
+      Accounts.login();
+    }
+    else
+    {
+      render(user);
+    }
+  }
+
+  public static void settingsChange(Long id, String firstName, String lastName, Integer age, String state)
+  {
+
+    Logger.info("just in settingsChange " + firstName);
+    String textString = "";
+    User user = User.findById(id);
+
+    // Check what details have changed and build a string to send to log of old
+    // and new values
+    if (!firstName.isEmpty())
+    {
+      textString += "First Name: old: " + user.firstName + " new: " + firstName;
+      user.firstName = firstName;
+    }
+
+    if (!lastName.isEmpty())
+    {
+      textString += " Last Name: old: " + user.lastName + " new: " + lastName;
+      user.lastName = lastName;
+    }
+
+    if (!state.isEmpty())
+    {
+      textString += " State: old: " + user.state + " new: " + state;
+      user.state = state;
+    }
+
+    if (!(age == null))
+    {
+      textString += " Age: old: " + user.age + " new: " + age;
+      user.age = age;
+    }
+
+    // only write to log if at least 1 field has been changed i.e. textString
+    // has been built
+    if (!textString.isEmpty())
+    {
+      user.save();
+      Logger.info(user.firstName + "'s details changed " + textString);
+    }
+
+    DonationController.index();
+
+  }
+}

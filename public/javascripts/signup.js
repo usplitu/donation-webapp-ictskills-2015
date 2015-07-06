@@ -35,7 +35,7 @@ $('.ui.form')
         {
           type   : 'not[0]',
           prompt : 'You cannot select a zero age'
-        },      
+        },         
         {
           type   : 'integer',
           prompt : 'Please enter a valid age'

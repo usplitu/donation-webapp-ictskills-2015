@@ -1,11 +1,11 @@
 /* used on segments in each page to give a uniform background colour and shadowing */
-#background
+#background, #sectionshad
 {
   background-color: #ffffa4;
   box-shadow: 10px 10px 5px grey;	
 }
 
-/* same as #background with no shadow. Used in divs */
+/* same as #background with no shadow. Used in divs  */
 #bckgrdnoshad
 {
   background-color: #ffffa4;  
@@ -29,11 +29,7 @@
    box-shadow: 10px 10px 5px grey;		
 }
 
-/*distinguish headers in red */
-#hdrred
-{
-  color: #ff8080;	
-}
+
 
 
 

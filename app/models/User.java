@@ -2,10 +2,14 @@ package models;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 import java.util.List;
 import java.util.ArrayList;
+
 import javax.persistence.OneToMany;
+
 import play.db.jpa.Model;
 
 @Entity
@@ -22,15 +26,16 @@ public class User extends Model
   public String addr2;
   public String city;
   public String zip;
-  
+
+  @ManyToOne
+  public Candidate candidate;
 
   @OneToMany(mappedBy = "from", cascade = CascadeType.ALL)
   List<Donation> donations = new ArrayList<Donation>();
-  
-  
 
   public User(boolean usaCitizen, String firstName, String lastName, String email, String password, Integer age,
-      String state, String addr1, String addr2, String city, String zip)
+      String state, String addr1, String addr2, String city, String zip, Candidate candidate)
+
   {
     this.usaCitizen = usaCitizen;
     this.firstName = firstName;
@@ -41,9 +46,9 @@ public class User extends Model
     this.state = state;
     this.addr1 = addr1;
     this.addr2 = addr2;
-    this.city  = city;
-    this.zip   = zip;
-        
+    this.city = city;
+    this.zip = zip;
+    this.candidate = candidate;
 
   }
 
@@ -56,4 +61,5 @@ public class User extends Model
   {
     return this.password.equals(password);
   }
+
 }

@@ -1,4 +1,23 @@
-
+Candidate(abamo):
+   firstName: Abel
+   lastName:  Abamo
+   email: abel@simpson.com   
+         
+Candidate(hilton):
+   firstName: Celery
+   lastName:  Hilton
+   email: celery@simpson.com   
+ 
+Candidate(gumble):
+   firstName: Barney
+   lastName:  Gumble
+   email: barney@simpson.com    
+   
+Candidate(obriain):
+   firstName: Dara
+   lastName:  O'Briain
+   email: dara@simpson.com       
+   
 User(homer):
     age: 77
     firstName: Homer
@@ -11,6 +30,7 @@ User(homer):
     addr2: 8 Privet Lane
     city: Tempe
     zip: 85252
+    candidate: abamo  
     
  
 User(marge):
@@ -25,6 +45,8 @@ User(marge):
     addr2: 12 Milk Street
     city: Lamington
     zip: 12345
+    candidate: hilton
+  
    
 User(bart):
     age: 8
@@ -38,6 +60,8 @@ User(bart):
     addr2: 12 Amiens Street
     city: Scottsdale
     zip: 67254
+    candidate: gumble
+   
                      
 User(lisa):
     age: 6 
@@ -50,7 +74,9 @@ User(lisa):
     addr1: The Penthouse
     addr2: 7 The Stockbrokers
     city: Portland
-    zip: 93587                             
+    zip: 93587   
+    candidate: obriain
+                             
  
 User(maggie):
     age: 1
@@ -64,4 +90,7 @@ User(maggie):
     addr2: Jellycross Road
     city: Moab
     zip: 76389
-         
+    candidate: abamo
+    
+    
+       

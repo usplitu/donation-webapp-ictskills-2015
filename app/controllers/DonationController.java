@@ -32,6 +32,7 @@ public class DonationController extends Controller
   {
     Logger.info("amount donated " + amountDonated + " " + "method donated " + methodDonated);
     User user = Accounts.getCurrentUser();
+
     if (user == null)
     {
       Logger.info("Donation class : Unable to getCurrentuser");

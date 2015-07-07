@@ -8,37 +8,42 @@
   <h2 class="ui orange header">
     <i class="table icon"></i>
     <div class="content">
-     List of Donations ...
+      <p> List of Donations  - ${donations.size()} donation(s) made</p>
     </div>   
   </h2>   
 </section> 
-<section class="ui segment" id = "background">  
-  <ol class="ui list">
-    <table class="ui table">
-	  <thead>
-	    <tr>
-		  <th>Donors</th>
-		  <th>Age</th>
-		  <th>Location</th>
-		  <th>Amount($)</th>
-		  <th>Method donated</th>
-		  <th>Date donated</th>
-		</tr>
-	  </thead>
-	  <tbody>
-	    #{list items:donations, as:'donation'}
-		<tr>
-		  <td>${donation.from.firstName}  ${donation.from.lastName}</td>
-		  <td>${donation.from.age}</td>
-		  <td>${donation.from.state}</td>
-		  <td>${donation.received}</td>
-		  <td>${donation.methodDonated}</td>
-		  <td>${donation.donateDate}</td>
-		</tr>
-		#{/list}
-	  </tbody>
-    </table>
-  </ol>
+<section class="ui segment" id = "background">
+  #{if donations.size==0}
+    <h2> Please click on 'Make Donation' to donate </h2>
+  #{/if}
+  #{else}  
+    <ol class="ui list">
+	  <table class="ui table">
+	    <thead>
+		  <tr>
+		    <th>Donors</th>
+			<th>Age</th>
+			<th>Location</th>
+			<th>Amount($)</th>
+			<th>Method donated</th>
+			<th>Date donated</th>			
+	      </tr>
+		</thead>
+		<tbody>
+		  #{list items:donations, as:'donation'}
+	    	<tr>
+			  <td>${donation.from.firstName}  ${donation.from.lastName}</td>
+			  <td>${donation.from.age}</td>
+			  <td>${donation.from.state}</td>
+			  <td>${donation.received}</td>
+			  <td>${donation.methodDonated}</td>
+			  <td>${donation.donateDate}</td>			 
+			</tr>
+		  #{/list}
+		</tbody>
+	  </table>
+    </ol>
+  #{/else}
   <img class="ui tiny right floated image" src="/public/images/usaflagsmall.png">
 </section>
 

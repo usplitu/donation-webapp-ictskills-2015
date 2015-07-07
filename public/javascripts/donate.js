@@ -1,14 +1,13 @@
 $('.ui.checkbox').checkbox();
 $('.ui.dropdown').dropdown();
 
-$('.ui.form')
-.form({
+$('.ui.form').form({
 
-  amountDonated: {
-    identifier: 'amountDonated',
-    rules: [{
-        type: 'empty',
-        prompt: 'Please select an amount to donate'
-      }]
+  amountDonated : {
+    identifier : 'amountDonated',
+    rules : [ {
+      type : 'empty',
+      prompt : 'Please select an amount to donate'
+    } ]
   }
 });

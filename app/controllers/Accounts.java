@@ -18,14 +18,18 @@ public class Accounts extends Controller
 
   public static void signup()
   {
-    render();
+    List<Candidate> candidates = Candidate.findAll();
+    render(candidates);
   }
 
   public static void register(boolean usCitizen, String firstName, String lastName, String email, String password,
-      Integer age, String state, String addr1, String addr2, String city, String zip)
+      Integer age, String state, String addr1, String addr2, String city, String zip, String candidateEmail)
   {
-    Logger.info(usCitizen + " " + firstName + " " + lastName + " " + email + " " + password + " " + age + " " + state);
-    User user = new User(usCitizen, firstName, lastName, email, password, age, state, addr1, addr2, city, zip);
+    Candidate candidate = Candidate.findByEmail(candidateEmail);
+    Logger.info(usCitizen + " " + firstName + " " + lastName + " " + email + " " + password + " " + age + " " + state
+        + " " + candidate);
+    User user = new User(usCitizen, firstName, lastName, email, password, age, state, addr1, addr2, city, zip,
+        candidate);
     user.save();
     login();
   }
@@ -61,6 +65,7 @@ public class Accounts extends Controller
     {
       Logger.info("Successfull authentication of " + user.firstName + " " + user.lastName);
       session.put("logged_in_userid", user.id);
+
       // jg070615 commented as used JSON - DonationController.index();
       // if login successful, communicate back to AJAX call in login.js and that
       // will handle next screen

@@ -92,5 +92,27 @@ User(maggie):
     zip: 76389
     candidate: abamo
     
+Donation(donation1):
+    methodDonated: paypal
+    received: 1000   
+    donateDate: 2015-05-06 18:15:54.0
+    from: marge    
     
+Donation(donation2):
+    methodDonated: paypal
+    received: 1000    
+    donateDate: 2015-05-06 18:20:54.0 
+    from: homer
+    
+Donation(donation3):
+    methodDonated: direct
+    received: 500   
+    donateDate: 2015-05-06 19:15:54.0           
+    from: marge    
+    
+Donation(donation4):
+    methodDonated: direct
+    received: 500   
+    donateDate: 2015-05-06 19:20:54.0  
+    from: homer          
        

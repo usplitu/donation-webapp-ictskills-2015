@@ -1,5 +1,5 @@
 /* used on segments in each page to give a uniform background colour and shadowing */
-#background, #sectionshad
+#background, #sectionshad, #sectionshad2
 {
   background-color: #ffffa4;
   box-shadow: 10px 10px 5px grey;	

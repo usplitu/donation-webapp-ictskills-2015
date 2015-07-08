@@ -1,0 +1,82 @@
+#{extends 'main.html' /} 
+#{set title:'Report' /} 
+#{set activePage: 'report' /} 
+#{include 'nav.html' /}
+
+
+<section class="ui segment" id="sectionshad">
+  <h2 class="ui orange header">
+    <i class="table icon"></i>
+    <div class="content">
+      <p> List of Donations  - ${donations.size()} donation(s) made</p>
+    </div>   
+  </h2>   
+</section> 
+<section class="ui segment" id = "background">
+  #{if donations.size==0}
+    <h2> Please click on 'Make Donation' to donate </h2>
+  #{/if}
+  #{else}  
+    <ol class="ui list">
+	  <table class="ui table">
+	    <thead>
+		  <tr>
+		    <th>Donors</th>
+			<th>Age</th>
+			<th>Location</th>
+			<th>Amount($)</th>
+			<th>Method donated</th>
+			<th>Date donated</th>	
+			<th>Candidate</th>		
+	      </tr>
+		</thead>
+		<tbody>
+		  #{list items:donations, as:'donation'}
+	    	<tr>
+			  <td>${donation.from.firstName}  ${donation.from.lastName}</td>
+			  <td>${donation.from.age}</td>
+			  <td>${donation.from.state}</td>
+			  <td>${donation.received}</td>
+			  <td>${donation.methodDonated}</td>
+			  <td>${donation.donateDate}</td>	
+			  <td>${donation.from.candidate.firstName} ${donation.from.candidate.lastName}</td>		 
+			</tr>
+		  #{/list}
+		</tbody>
+	  </table>
+    </ol>      
+  #{/else}
+  <img class="ui tiny right floated image" src="/public/images/usaflagsmall.png">   
+</section>
+
+<!-- section for filtering on report -->
+<section class="ui segment" id="sectionshad2"> 
+  <div class="ui grid">
+    <div class="four wide column">
+      <div class="ui form" >
+	    <form action="/report/filterCandidates" method="POST" class= "ui form"> 
+	      <div class="ui fluid form segment">  
+	        <div class="field">                    
+              <div class="ui dropdown labelled search icon button">
+                <i class="spy icon"></i>
+		        <input name="candidateEmail" type="hidden">
+			    <div class="default text">Filter By Candidate</div>
+			    <i class="dropdown icon"></i>
+			    <div class="menu">
+			      #{list items:candidates, as:'candidate'}
+			        <div class = "item" data-value="${candidate.email}">${candidate.firstName} ${candidate.lastName}</div>			 
+			      #{/list}		  
+                </div> <!--  div class = "menu" -->
+	          </div> <!-- ui selection dropdown -->
+	          <button type="submit" class="ui blue submit button">Display</button>
+	          <div class="ui error message"></div>
+            </div> <!-- candidate field -->
+          </div> <!-- ui fluid form segment -->
+        </form> <!-- form -->  
+      </div> <!-- ui form -->    
+    </div> <!-- 4 wide column -->      
+  </div> <!-- ui grid -->         
+</section>        
+
+<script src="@{'/public/javascripts/renderreport.js'}"></script>
+

@@ -23,7 +23,7 @@
   <!--  for donation to be active, a user must be logged in -->
   #{if activePage == 'donation'}   
     <a class="ui active item" href="/donation"><i class="payment icon"></i>Make Donation</a>
-    <a class="ui item" href="/donation/report"><i class="table icon"></i>Report</a> 
+    <a class="ui item" href="/report"><i class="table icon"></i>Report</a> 
     <a class="ui item" href="/profile"><i class="settings icon"></i>Edit Profile</a>   
     <a class="ui item" href="/logout"><i class="sign out icon"></i>Log Out</a>
   #{/if}
@@ -33,7 +33,7 @@
   displayed on menu bar if Make Donation clicked and signed in.-->
   #{if activePage == 'report'}    
     <a class="ui item" href="/donation"><i class="payment icon"></i>Make Donation</a>  
-    <a class="ui active item" href="/donation/report"><i class="table icon"></i>Report</a> 
+    <a class="ui active item" href="/report"><i class="table icon"></i>Report</a> 
     <a class="ui item" href="/profile"><i class="settings icon"></i>Edit Profile</a>   
     <a class="ui item" href="/logout"><i class="sign out icon"></i>Log Out</a>
   #{/if}

@@ -71,22 +71,4 @@ public class DonationController extends Controller
     return progress;
   }
 
-  public static void renderReport()
-  {
-
-    User user = Accounts.getCurrentUser();
-
-    if (user == null)
-    {
-      Logger.info("Donation class renderReport : Unable to getCurrentuser");
-      Accounts.login();
-    }
-    else
-    {
-      List<Donation> donations = Donation.findAll();
-      render(donations);
-
-    }
-
-  }
 }

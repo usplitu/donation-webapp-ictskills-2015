@@ -16,7 +16,12 @@ Candidate(gumble):
 Candidate(obriain):
    firstName: Dara
    lastName:  O'Briain
-   email: dara@simpson.com       
+   email: dara@simpson.com  
+   
+Candidate(crosse):
+   firstName: Siun
+   lastName:  Crosse
+   email: siun@simpson.com         
    
 User(homer):
     age: 77
@@ -47,6 +52,19 @@ User(marge):
     zip: 12345
     candidate: hilton
   
+User(siofra):
+    age: 5
+    firstName: Siofra
+    lastName: Crosse
+    email: siofra@simpson.com
+    password: secret
+    state: Delaware
+    usaCitizen: TRUE
+    addr1: House 5
+    addr2: 12 Coffee Street
+    city: Lamington
+    zip: 12345
+    candidate: crosse    
    
 User(bart):
     age: 8
@@ -114,5 +132,40 @@ Donation(donation4):
     methodDonated: direct
     received: 500   
     donateDate: 2015-05-06 19:20:54.0  
-    from: homer          
-       
+    from: homer     
+    
+Donation(donation5):
+    methodDonated: paypal
+    received: 1000   
+    donateDate: 2015-05-07 18:15:54.0
+    from: bart    
+    
+Donation(donation6):
+    methodDonated: paypal
+    received: 1000    
+    donateDate: 2015-05-07 18:20:54.0 
+    from: maggie   
+    
+Donation(donation7):
+    methodDonated: paypal
+    received: 1000    
+    donateDate: 2015-05-07 18:25:54.0 
+    from: lisa     
+    
+Donation(donation8):
+    methodDonated: direct
+    received: 500   
+    donateDate: 2015-05-07 19:15:54.0           
+    from: bart    
+    
+Donation(donation9):
+    methodDonated: direct
+    received: 500   
+    donateDate: 2015-05-07 19:20:54.0  
+    from: maggie   
+                 
+Donation(donation10):
+    methodDonated: direct
+    received: 500   
+    donateDate: 2015-07-08 10:12:02.439  
+    from: lisa         

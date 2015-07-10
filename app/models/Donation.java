@@ -21,17 +21,30 @@ public class Donation extends Model
 {
   public long received;
   public String methodDonated;
-  public Date donateDate;
+
+  // saving datetime in this way (currentTimeMillis + Long type) and not as date
+  // allows us more flexibility
+  // in html to use different formats. Also system does not have to take date
+  // from yml and convert it to
+  // time in millis as we put it in yml in this way ==> more efficient
+  public Long donateDate;
 
   @ManyToOne
   public User from;
 
-  public Donation(User from, long received, String methodDonated)
+  @ManyToOne
+  public Candidate candidate;
+
+  public Donation(User from, long received, String methodDonated, Candidate candidate)
   {
     this.received = received;
     this.methodDonated = methodDonated;
-    this.donateDate = new Date();
+    // saving datetime in this way (currentTimeMillis + Long type) and not as
+    // date allows us more flexibility
+    // in html to use different formats
+    this.donateDate = System.currentTimeMillis();
     this.from = from;
+    this.candidate = candidate;
 
   }
 }

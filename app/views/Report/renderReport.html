@@ -27,6 +27,7 @@
 			<th>Amount($)</th>
 			<th>Method donated</th>
 			<th>Date donated</th>	
+			<th>Time donated</th>			
 			<th>Candidate</th>		
 	      </tr>
 		</thead>
@@ -38,8 +39,9 @@
 			  <td>${donation.from.state}</td>
 			  <td>${donation.received}</td>
 			  <td>${donation.methodDonated}</td>
-			  <td>${donation.donateDate}</td>	
-			  <td>${donation.from.candidate.firstName} ${donation.from.candidate.lastName}</td>		 
+			  <td>${donation.donateDate.asdate('yyyy.MM.dd')}</td>			 	  
+			  <td>${donation.donateDate.asdate('hh:mm:ss a')}</td><!-- from https://www.playframework.com/documentation/1.2.3/javaextensions + http://www.tutorialspoint.com/java/java_date_time.htm -->			  
+			  <td>${donation.candidate.firstName} ${donation.candidate.lastName}</td>			  		 
 			</tr>
 		  #{/list}
 		</tbody>
@@ -57,10 +59,10 @@
 	    <form action="/report/filterCandidates" method="POST" class= "ui form"> 
 	      <div class="ui fluid form segment">  
 	        <div class="field">                    
-              <div class="ui dropdown labelled search icon button">
+              <div class="ui dropdown labelled search icon button">              
                 <i class="spy icon"></i>
 		        <input name="candidateEmail" type="hidden">
-			    <div class="default text">Filter By Candidate</div>
+			    <div class="default text">By Candidate</div>
 			    <i class="dropdown icon"></i>
 			    <div class="menu">
 			      #{list items:candidates, as:'candidate'}
@@ -68,13 +70,68 @@
 			      #{/list}		  
                 </div> <!--  div class = "menu" -->
 	          </div> <!-- ui selection dropdown -->
-	          <button type="submit" class="ui blue submit button">Display</button>
+	          <button type="submit" class="ui blue submit button">Filter</button>
 	          <div class="ui error message"></div>
             </div> <!-- candidate field -->
           </div> <!-- ui fluid form segment -->
         </form> <!-- form -->  
       </div> <!-- ui form -->    
-    </div> <!-- 4 wide column -->      
+    </div> <!-- 4 wide column by Candidate -->  
+    <div class="four wide column">
+      <div class="ui form" >
+	    <form action="/report/filterDonors" method="POST" class= "ui form"> 
+	      <div class="ui fluid form segment">  
+	        <div class="field">                    
+              <div class="ui dropdown labelled search icon button">
+                <i class="money icon"></i>
+		        <input name="donorEmail" type="hidden">
+			    <div class="default text">By Donor</div>
+			    <i class="dropdown icon"></i>
+			    <div class="menu">
+			      #{list items:uniqueDonations, as:'donor'}
+			        <div class = "item" data-value="${donor.from.email}">${donor.from.firstName} ${donor.from.lastName}</div>			 
+			      #{/list}		  
+                </div> <!--  div class = "menu" -->
+	          </div> <!-- ui selection dropdown -->
+	          <button type="submit" class="ui blue submit button">Filter</button>
+	          <div class="ui error message"></div>
+            </div> <!-- donor field -->
+          </div> <!-- ui fluid form segment -->
+        </form> <!-- form -->  
+      </div> <!-- ui form -->    
+    </div> <!-- 4 wide column by donor --> 
+    <div class="four wide column">
+      <div class="ui form" >
+	    <form action="/report/filterStates" method="POST" class= "ui form"> 
+	      <div class="ui fluid form segment">  
+	        <div class="field">                    
+              <div class="ui dropdown labelled search icon button">
+                <i class="world icon"></i>
+		        <input name="state" type="hidden">
+			    <div class="default text">By State</div>
+			    <i class="dropdown icon"></i>
+			    <div class="menu">
+			      #{list items:uniqueStates, as:'state'}
+			        <div class = "item" data-value="${state}">${state}</div>			 
+			      #{/list}		  
+                </div> <!--  div class = "menu" -->
+	          </div> <!-- ui selection dropdown -->
+	          <button type="submit" class="ui blue submit button">Filter</button>
+	          <div class="ui error message"></div>
+            </div> <!-- state field -->
+          </div> <!-- ui fluid form segment -->
+        </form> <!-- form -->  
+      </div> <!-- ui form -->    
+    </div> <!-- 4 wide column by state -->     
+    <div class="four wide column">     
+	  <form action="/report" method="GET" class= "ui form"> 
+	    <div class="ui fluid form segment">  	                           
+          <i class="refresh icon"></i>
+	      <button type="submit" class="ui blue submit button">All Donations</button>
+	      <div class="ui error message"></div>            
+        </div> <!-- ui fluid form segment -->
+      </form> <!-- form -->           
+    </div> <!-- 4 wide column all donations -->     
   </div> <!-- ui grid -->         
 </section>        
 

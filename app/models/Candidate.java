@@ -3,6 +3,7 @@ package models;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -22,8 +23,8 @@ public class Candidate extends Model
   public String lastName;
   public String email;
 
-  @OneToMany(mappedBy = "candidate")
-  public List<User> users;
+  @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL)
+  List<Donation> donations = new ArrayList<Donation>();
 
   public Candidate(String firstName, String lastName, String email)
   {

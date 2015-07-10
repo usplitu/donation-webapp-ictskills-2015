@@ -1,7 +1,7 @@
 $('.ui.checkbox').checkbox();
 $('.ui.dropdown').dropdown();
 
-//go back 1 page in history list when cancel button clicked
+// go back 1 page in history list when cancel button clicked
 function goBack() {
   window.history.go(-1);
   return true;

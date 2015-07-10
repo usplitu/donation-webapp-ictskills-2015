@@ -53,13 +53,6 @@ $('.ui.form').form({
       prompt : 'Please select a state'
     } ]
   },
-  candidateEmail : {
-    identifier : 'candidateEmail',
-    rules : [ {
-      type : 'empty',
-      prompt : 'Please select a candidate'
-    } ]
-  },
   age : {
     identifier : 'age',
     rules : [ {

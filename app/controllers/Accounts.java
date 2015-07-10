@@ -18,18 +18,14 @@ public class Accounts extends Controller
 
   public static void signup()
   {
-    List<Candidate> candidates = Candidate.findAll();
-    render(candidates);
+    render();
   }
 
   public static void register(boolean usCitizen, String firstName, String lastName, String email, String password,
-      Integer age, String state, String addr1, String addr2, String city, String zip, String candidateEmail)
+      Integer age, String state, String addr1, String addr2, String city, String zip)
   {
-    Candidate candidate = Candidate.findByEmail(candidateEmail);
-    Logger.info(usCitizen + " " + firstName + " " + lastName + " " + email + " " + password + " " + age + " " + state
-        + " " + candidate);
-    User user = new User(usCitizen, firstName, lastName, email, password, age, state, addr1, addr2, city, zip,
-        candidate);
+    Logger.info(usCitizen + " " + firstName + " " + lastName + " " + email + " " + password + " " + age + " " + state);
+    User user = new User(usCitizen, firstName, lastName, email, password, age, state, addr1, addr2, city, zip);
     user.save();
     login();
   }

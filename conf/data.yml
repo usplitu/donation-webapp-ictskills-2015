@@ -2,26 +2,31 @@ Candidate(abamo):
    firstName: Abel
    lastName:  Abamo
    email: abel@simpson.com   
+   donations: [donation02, donation03]   
          
 Candidate(hilton):
    firstName: Celery
    lastName:  Hilton
-   email: celery@simpson.com   
+   email: celery@simpson.com  
+   donations: [donation01, donation04, donation10]   
  
 Candidate(gumble):
    firstName: Barney
    lastName:  Gumble
-   email: barney@simpson.com    
+   email: barney@simpson.com  
+   donations: [donation07, donation09]   
    
 Candidate(obriain):
    firstName: Dara
    lastName:  O'Briain
-   email: dara@simpson.com  
+   email: dara@simpson.com 
+   donations: []   
    
 Candidate(crosse):
    firstName: Siun
    lastName:  Crosse
-   email: siun@simpson.com         
+   email: siun@simpson.com 
+   donations: [donation05, donation06, donation08]        
    
 User(homer):
     age: 77
@@ -34,9 +39,8 @@ User(homer):
     addr1: Apt 5
     addr2: 8 Privet Lane
     city: Tempe
-    zip: 85252
-    candidate: abamo  
-    
+    zip: 85252   
+    donations: [donation02, donation04]    
  
 User(marge):
     age: 40
@@ -49,8 +53,8 @@ User(marge):
     addr1: House 2
     addr2: 12 Milk Street
     city: Lamington
-    zip: 12345
-    candidate: hilton
+    zip: 12345     
+    donations: [donation01, donation03]
   
 User(siofra):
     age: 5
@@ -63,8 +67,8 @@ User(siofra):
     addr1: House 5
     addr2: 12 Coffee Street
     city: Lamington
-    zip: 12345
-    candidate: crosse    
+    zip: 12345    
+    donations: []    
    
 User(bart):
     age: 8
@@ -77,9 +81,8 @@ User(bart):
     addr1: Apt 7
     addr2: 12 Amiens Street
     city: Scottsdale
-    zip: 67254
-    candidate: gumble
-   
+    zip: 67254   
+    donations: [donation05, donation08]   
                      
 User(lisa):
     age: 6 
@@ -92,9 +95,8 @@ User(lisa):
     addr1: The Penthouse
     addr2: 7 The Stockbrokers
     city: Portland
-    zip: 93587   
-    candidate: obriain
-                             
+    zip: 93587        
+    donations: [donation07, donation10]                             
  
 User(maggie):
     age: 1
@@ -107,65 +109,75 @@ User(maggie):
     addr1: Apt 1B
     addr2: Jellycross Road
     city: Moab
-    zip: 76389
-    candidate: abamo
+    zip: 76389    
+    donations: [donation09]
     
-Donation(donation1):
+Donation(donation01):
     methodDonated: paypal
     received: 1000   
-    donateDate: 2015-05-06 18:15:54.0
-    from: marge    
+    donateDate: 1430909310000
+    from: marge 
+    candidate: hilton   
     
-Donation(donation2):
+Donation(donation02):
     methodDonated: paypal
     received: 1000    
-    donateDate: 2015-05-06 18:20:54.0 
+    donateDate: 1431111151000 
     from: homer
+    candidate: abamo  
     
-Donation(donation3):
+Donation(donation03):
     methodDonated: direct
     received: 500   
-    donateDate: 2015-05-06 19:15:54.0           
-    from: marge    
+    donateDate: 1432113931000           
+    from: marge   
+    candidate: abamo 
     
-Donation(donation4):
+Donation(donation04):
     methodDonated: direct
     received: 500   
-    donateDate: 2015-05-06 19:20:54.0  
-    from: homer     
+    donateDate: 1433152927000  
+    from: homer   
+    candidate: hilton  
     
-Donation(donation5):
+Donation(donation05):
     methodDonated: paypal
     received: 1000   
-    donateDate: 2015-05-07 18:15:54.0
-    from: bart    
+    donateDate: 1433155637000
+    from: bart 
+    candidate: crosse    
     
-Donation(donation6):
+Donation(donation06):
     methodDonated: paypal
     received: 1000    
-    donateDate: 2015-05-07 18:20:54.0 
+    donateDate: 1433304663000 
     from: maggie   
+    candidate: crosse 
     
-Donation(donation7):
+Donation(donation07):
     methodDonated: paypal
     received: 1000    
-    donateDate: 2015-05-07 18:25:54.0 
-    from: lisa     
+    donateDate: 1434366911000 
+    from: lisa 
+    candidate: gumble    
     
-Donation(donation8):
+Donation(donation08):
     methodDonated: direct
     received: 500   
-    donateDate: 2015-05-07 19:15:54.0           
-    from: bart    
+    donateDate: 1434557000000          
+    from: bart  
+    candidate: crosse   
     
-Donation(donation9):
+Donation(donation09):
     methodDonated: direct
     received: 500   
-    donateDate: 2015-05-07 19:20:54.0  
-    from: maggie   
+    donateDate: 1434558267000  
+    from: maggie  
+    candidate: gumble  
                  
 Donation(donation10):
     methodDonated: direct
     received: 500   
-    donateDate: 2015-07-08 10:12:02.439  
-    from: lisa         
+    donateDate: 1435775402000  
+    from: lisa 
+    candidate: hilton         

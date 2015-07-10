@@ -125,21 +125,7 @@
             <i class="lock icon"></i>
           </div>        
         </div>
-      </div><!--  two fields for email/password -->
-      <div class="field">
-          <label>Candidate:</label>    
-          <div class="ui dropdown labelled search icon button">
-            <i class="world icon"></i>
-		    <input name="candidateEmail" type="hidden">
-			<div class="default text">Candidate</div>
-			<i class="dropdown icon"></i>
-			<div class="menu">
-			  #{list items:candidates, as:'candidate'}
-			    <div class = "item" data-value="${candidate.email}">${candidate.firstName} ${candidate.lastName}</div>			 
-			  #{/list}		  
-            </div> <!--  div class = "menu" -->
-	      </div> <!-- ui selection dropdown -->
-        </div> <!-- candidate field -->
+      </div><!--  two fields for email/password -->      
       <button class="ui blue submit button">Signup</button>
       <div class="ui error message"></div>
       <img class="ui tiny right floated image" src="/public/images/usaflagsmall.png">

@@ -11,6 +11,13 @@
   background-color: #ffffa4;  
 }
 
+
+/* Used in divs that require a contrasting colour  */
+#bckgrdcontrast
+{
+  background-color: #ff8000;  
+}
+
 /* used on logout to draw user's attention to either signup or login */
 #attention
 {

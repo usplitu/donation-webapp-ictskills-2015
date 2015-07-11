@@ -1,0 +1,46 @@
+#{extends 'main.html' /} 
+#{set title:'Administrator Login' /} 
+#{set activePage: 'adminlogin' /} 
+#{include 'nav.html' /}
+
+<section class="ui segment" id="sectionshad">
+  <h2 class="ui orange header">
+    <i class="spy icon"></i>
+    <div class="content">
+      <h2> Administrator Account Login ...</h2>
+    </div>   
+  </h2>     
+</section>
+<section class="ui form segment" id = "background">  
+  <form class = "ui form">
+    <div class="ui two column grid">	  
+      <div class="column">
+        <div class="ui fluid form segment" id="bckgrdnoshad"> 
+          <h3 class = "ui header"> Restricted access </h3>
+		  <div class="field">
+		  	<label> Username: </label> <input type="text" name="username"
+				placeholder="Administrator username">
+		  </div>
+		  <div class="field">
+			<label> Password: </label>
+			<div class="ui left icon input">
+              <input type="password" name="password">
+              <i class="lock icon"></i>
+            </div>
+		  </div>	
+		  <!--   AJAX notification notificationbox introduced to hide entire container -->
+          <div class="ui fluid form segment" id="notificationBox">
+            <div id="notification"></div>
+          </div>	
+		  <div class="ui hidden divider"></div>		   
+		  <button class="ui blue submit button">Login</button>
+		  <div class="ui error message"></div>
+		  <img class="ui tiny right floated image" src="/public/images/usaflagsmall.png">
+	    </div>
+      </div>
+    </div>      
+  </form>
+</section>
+
+
+<script src="@{'/public/javascripts/adminlogin.js'}"></script>

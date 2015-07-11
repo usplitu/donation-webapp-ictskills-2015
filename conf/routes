@@ -24,6 +24,12 @@ POST /report/filterCandidates                       Report.filterCandidates
 GET /profile                                        EditProfile.profileIndex
 POST /settingsChange/{id}                           EditProfile.settingsChange
 
+# Administrator page
+GET /adminlogin                                     Administrator.login
+GET /adminlogout                                    Administrator.logout
+POST /adminauthent                                  Administrator.authenticate
+GET /adminreport                                    Administrator.adminReport
+
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

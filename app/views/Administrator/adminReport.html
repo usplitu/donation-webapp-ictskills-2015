@@ -1,0 +1,86 @@
+#{extends 'main.html' /} 
+#{set title:'Administrator Report' /} 
+#{set activePage: 'adminHome' /} 
+#{include 'nav.html' /}
+
+
+<section class="ui segment" id="sectionshad">
+  <h2 class="ui orange header">
+    <i class="table icon"></i>
+    <div class="content">
+      <p> List of Donors  - ${users.size()} donor(s) signed up</p>
+    </div>   
+  </h2>   
+</section> 
+<!-- section for displaying table of Users on the system -->
+<section class="ui segment" id = "background">
+  #{if users.size==0}
+    <h2> Time to get recruiting Donors</h2>
+  #{/if}
+  #{else}  
+    <ol class="ui list">
+	  <table class="ui table">
+	    <thead>
+		  <tr>
+		    <th>Name</th>
+			<th>State</th>
+			<th>Email</th>				
+	      </tr>
+		</thead>
+		<tbody>
+		  #{list items:users, as:'donor'}
+	    	<tr>
+			  <td>${donor.firstName}  ${donor.lastName}</td>
+			  <td>${donor.state}</td>
+			  <td>${donor.email}</td>			  		  		 
+			</tr>
+		  #{/list}
+		</tbody>
+	  </table>
+    </ol>      
+  #{/else}
+  <img class="ui tiny right floated image" src="/public/images/usaflagsmall.png">   
+</section>
+
+<section class="ui segment" id="sectionshad2">
+  <h2 class="ui orange header">
+    <i class="table icon"></i>
+    <div class="content">
+      <p> List of Candidates  - ${candidates.size()} candidate(s) signed up</p>
+    </div>   
+  </h2>   
+</section> 
+<!-- section for displaying table of Candidates -->
+<section class="ui segment" id="sectionshad3">  
+  #{if candidates.size==0}
+    <h2> Time to get recruiting Candidates </h2>
+  #{/if}
+  #{else}  
+    <ol class="ui list">
+	  <table class="ui table">
+	    <thead>
+		  <tr>
+		    <th>Name</th>
+			<th>Email</th>
+			<th>Office</th>	<!--  placeholder as office not defined until next story -->			
+	      </tr>
+		</thead>
+		<tbody>
+		  #{list items:candidates, as:'candidate'}
+	    	<tr>
+			  <td>${candidate.firstName}  ${candidate.lastName}</td>
+			  <td>${candidate.email}</td>
+			  <td>Placeholder until office defined in next story</td>			  		  		 
+			</tr>
+		  #{/list}
+		</tbody>
+	  </table>
+    </ol>      
+  #{/else}
+  <img class="ui tiny right floated image" src="/public/images/usaflagsmall.png">   
+</section>
+ 
+      
+
+
+

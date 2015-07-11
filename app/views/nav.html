@@ -31,32 +31,48 @@
 	    <a class="ui item" href="/profile"><i class="settings icon"></i>Edit Profile</a>
 	  #{/else}
 	  
+	 
       <a class="ui item"  href="/logout"><i class="sign out icon"></i>Log Out ${user.firstName} ${user.lastName}</a>
+     
 
   #{/if}
   #{else}
 
 	  #{if activePage == 'welcome'}
 	    <a class="ui active item" href="/"><i class="home icon"></i>Home</a>
-	  #{/if}
-	  #{else}
-	    <a class="ui item" href="/"><i class="home icon"></i>Home</a>
-	  #{/else}
+	    <a class="ui item" href="/signup"><i class="users icon"></i>Sign Up</a>
+	    <a class="ui item" href="/login"><i class="user icon"></i>Log In</a>  
+	    <a class="ui item" href="/adminlogin"><i class="spy icon"></i>Administrator</a>  
+	  #{/if}	 
 	  
 	  #{if activePage == 'signup'}
+	    <a class="ui item" href="/"><i class="home icon"></i>Home</a>
 	    <a class="ui active item" href="/signup"><i class="users icon"></i>Sign Up</a>
-	  #{/if}
-	  #{else}
-	    <a class="ui item" href="/signup"><i class="users icon"></i>Sign Up</a>
-	  #{/else}
-	  
+	    <a class="ui item" href="/login"><i class="user icon"></i>Log In</a>   
+	  #{/if}	   
 	  
 	  #{if activePage == 'login'}
+	    <a class="ui item" href="/"><i class="home icon"></i>Home</a>
+	    <a class="ui item" href="/signup"><i class="users icon"></i>Sign Up</a>
 	    <a class="ui active item" href="/login"><i class="user icon"></i>Log In</a>   
 	  #{/if}
-	  #{else}
-	    <a class="ui item" href="/login"><i class="user icon"></i>Log In</a>   
-	  #{/else}
+	  
+	  #{if activePage == 'adminlogin'}
+	    <a class="ui item" href="/"><i class="home icon"></i>Home</a>
+	    <a class="ui active item" href="/adminlogin"><i class="spy icon"></i>Administrator Login</a>	     
+	  #{/if}	
+	  
+	  #{if activePage == 'adminHome'}
+	    <a class="ui active item" href="/adminreport"><i class="home icon"></i>Administrator Home</a>	    
+	    <a class="ui item"  href="/adminlogout"><i class="sign out icon"></i>Administrator LogOut </a>		             
+	  #{/if}
+	  
+	  
+	  #{if activePage == 'logout'}
+	    <a class="ui item" href="/">Home</a>	    
+	    <a class="ui active item"  href="/logout"><i class="sign out icon"></i>Log Out </a>       
+      #{/if}
+      
 
   #{/else}  
  

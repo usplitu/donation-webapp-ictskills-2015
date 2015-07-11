@@ -180,4 +180,8 @@ Donation(donation10):
     received: 500   
     donateDate: 1435775402000  
     from: lisa 
-    candidate: hilton         
+    candidate: hilton        
+    
+Admin(admin1):         
+    username: admin
+    password: secret 

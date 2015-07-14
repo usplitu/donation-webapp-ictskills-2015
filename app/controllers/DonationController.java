@@ -48,19 +48,20 @@ public class DonationController extends Controller
     }
   }
 
-  public static void indexRealProgress(String candidateEmail, String candidateFirstName, String candidateLastName)
+  public static void indexRealProgress(String candidateEmail, String candidateFirstName, String candidateLastName,
+      Long candidateTarget)
   {
     // as of story-09, this section gets called instead of index() after a
     // donation as we really
     // need to call getPercentTargetAchieved and render the index.html page
     // passing in the real
     // progress and candidate name. John, you may wonder why I am passing in
-    // three candidate fields
+    // individual candidate fields
     // and not just using the Candidate object. The reason is that I kept
     // getting 'Invocation TargetException'
     // even when I had successfully accessed the Candidate object before the
     // call. I even tried this passing in User
-    // with the same abend so my only option was to pass the three strings I
+    // with the same abend so my only option was to pass the individual fields I
     // needed.
 
     User user = Accounts.getCurrentUser();
@@ -78,9 +79,10 @@ public class DonationController extends Controller
       // now get real values for the progress bar and candidate name for under
       // it in the label
       // after we have a donation, call this instead of index passing in
-      // candidate
+      // candidate fields. email is used to identify donations for the candidate
+      // in question.
 
-      String prog = getPercentTargetAchieved(candidateEmail);
+      String prog = getPercentTargetAchieved(candidateEmail, candidateTarget);
       String progress = prog + "%";
       String fullName = candidateFirstName + " " + candidateLastName;
       Logger.info("Donation ctrler : candidate is " + fullName);
@@ -110,10 +112,11 @@ public class DonationController extends Controller
 
       // after a donation has been created, run the new method below to
       // calculate progress
-      // and redisplay index.html. The reason why three strings are passed
+      // and redisplay index.html. The reason why individual candidate fields
+      // are passed
       // instead of the
       // candidate object John, is explained in the method.
-      indexRealProgress(candidateEmail, candidate.firstName, candidate.lastName);
+      indexRealProgress(candidateEmail, candidate.firstName, candidate.lastName, candidate.donationTarget);
     }
 
   }
@@ -124,16 +127,12 @@ public class DonationController extends Controller
     bal.save();
   }
 
-  private static long getDonationTarget()
-  {
-    return 20000;
-  }
-
-  public static String getPercentTargetAchieved(String candidateEmail)
+  public static String getPercentTargetAchieved(String candidateEmail, Long candidateTarget)
   {
     // Just find the donations (includes the one just created) that pertain to
     // the current
-    // candidate when calculating the progress %
+    // candidate when calculating the progress %. Also get the candidate Target
+    // amount
 
     List<Donation> allDonations = Donation.findAll();
     long total = 0;
@@ -146,7 +145,7 @@ public class DonationController extends Controller
       }
     }
 
-    long target = getDonationTarget();
+    long target = candidateTarget;
     long percentachieved = (total * 100 / target);
     String progress = String.valueOf(percentachieved);
     Logger.info("In getPercentTargetAchieved total " + total + " progress " + progress);

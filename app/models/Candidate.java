@@ -23,6 +23,7 @@ public class Candidate extends Model
   public String lastName;
   public String email;
   public String password;
+  public Long donationTarget;
 
   @ManyToOne
   public Office office;
@@ -38,12 +39,14 @@ public class Candidate extends Model
   @OneToMany(mappedBy = "candidate", cascade = CascadeType.ALL)
   List<Donation> donations = new ArrayList<Donation>();
 
-  public Candidate(String firstName, String lastName, String email, String password, Office office, Admin adminBy2)
+  public Candidate(String firstName, String lastName, String email, String password, Long donationTarget,
+      Office office, Admin adminBy2)
   {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
     this.password = password;
+    this.donationTarget = donationTarget;
     this.office = office;
     this.adminBy2 = adminBy2;
   }

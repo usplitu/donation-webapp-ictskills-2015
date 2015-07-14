@@ -2,7 +2,6 @@ $('.ui.checkbox').checkbox();
 $('.ui.dropdown').dropdown();
 
 $('.ui.form').form({
-
   amountDonated : {
     identifier : 'amountDonated',
     rules : [ {

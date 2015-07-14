@@ -34,7 +34,7 @@ public class CandidateController extends Controller
   }
 
   public static void candidRegister(String firstName, String lastName, String email, String password,
-      String titleOfOffice)
+      Long donationTarget, String titleOfOffice)
   {
     // if trying to register a pre-existing candidate, give error message,
     // else register and display Administrator.adminReport()
@@ -63,7 +63,7 @@ public class CandidateController extends Controller
         Office office = Office.findByTitle(titleOfOffice);
 
         Logger.info(firstName + " " + lastName + " " + email + " " + password + " " + office + " " + admin);
-        Candidate candidate = new Candidate(firstName, lastName, email, password, office, admin);
+        Candidate candidate = new Candidate(firstName, lastName, email, password, donationTarget, office, admin);
         candidate.save();
         Administrator.adminReport();
       }

@@ -37,20 +37,26 @@
           </div>        
         </div>
       </div><!--  two fields for email/password -->  
-      <div class="field">   
-        <!--  <div class="ui selection dropdown"> -->
-        <div class="ui dropdown labelled search icon button"> 
-          <i class="world icon"></i>         
-		  <input name="titleOfOffice" type="hidden">
-	      <div class="default text">Select Candidate Office </div>
-		  <i class="dropdown icon"></i>
-	      <div class="menu">
-		    #{list items:offices, as:'office'}
-			  <div class = "item" data-value="${office.officeTitle}">${office.officeTitle}</div>			 
-			#{/list}		  
-          </div> <!--  div class = "menu" -->
-	    </div> <!-- ui selection dropdown -->
-	  </div> <!-- field for office dropdown -->	   
+      <div class="two fields">
+        <div class="field">
+          <label>Donation Target Amount ($):</label>
+          <input placeholder="Donation Target Amount ($)" type="number" name="donationTarget">
+        </div>	
+        <div class="field">   
+          <label>Select Candidate Office:</label>          
+          <div class = "ui selection dropdown">          
+            <i class="world icon"></i>         
+		    <input name="titleOfOffice" type="hidden">
+	        <div class="default text">Choose an Office </div>
+		    <i class="dropdown icon"></i>
+	        <div class="menu">
+		      #{list items:offices, as:'office'}
+			    <div class = "item" data-value="${office.officeTitle}">${office.officeTitle}</div>			 
+			  #{/list}		  
+            </div> <!--  div class = "menu" -->
+	      </div> <!-- ui selection dropdown -->
+	    </div> <!-- field for office dropdown -->	      
+	  </div> <!-- two fields for office/donation target --> 
       <button class="ui blue submit button">Signup</button>
       <div class="ui error message"></div>
       <img class="ui tiny right floated image" src="/public/images/usaflagsmall.png">

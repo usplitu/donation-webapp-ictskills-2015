@@ -39,6 +39,7 @@ Candidate(abamo):
    lastName:  Abamo
    email: abel@simpson.com  
    password: secret
+   donationTarget: 500
    office: speaker 
    adminBy2: admin1
    donations: [donation02, donation03]   
@@ -48,6 +49,7 @@ Candidate(hilton):
    lastName:  Hilton
    email: celery@simpson.com 
    password: secret
+   donationTarget: 25000
    office: chiefstaff 
    adminBy2: admin1
    donations: [donation01, donation04, donation10]   
@@ -57,6 +59,7 @@ Candidate(gumble):
    lastName:  Gumble
    email: barney@simpson.com  
    password: secret
+   donationTarget: 47000
    office: vicepresident
    adminBy2: admin1
    donations: [donation07, donation09]   
@@ -66,6 +69,7 @@ Candidate(obriain):
    lastName:  O'Briain
    email: dara@simpson.com 
    password: secret
+   donationTarget: 18000
    office: attorney
    adminBy2: admin1
    donations: []   
@@ -75,6 +79,7 @@ Candidate(crosse):
    lastName:  Crosse
    email: siun@simpson.com 
    password: secret
+   donationTarget: 20000
    office: president
    adminBy2: admin1
    donations: [donation05, donation06, donation08]        

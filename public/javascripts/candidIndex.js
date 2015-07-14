@@ -21,6 +21,16 @@ $('.ui.form').form({
       prompt : 'Please select an Office'
     } ]
   },
+  donationTarget : {
+    identifier : 'donationTarget',
+    rules : [ {
+      type : 'integer',
+      prompt : 'Please select a valid Donation Target amount'
+    }, {
+      type : 'not[0]',
+      prompt : 'You cannot select a zero target amount'
+    } ]
+  },
   email : {
     identifier : 'email',
     rules : [ {

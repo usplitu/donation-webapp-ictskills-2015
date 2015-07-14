@@ -86,11 +86,15 @@ public class EditProfile extends Controller
     }
 
     // only write to log if at least 1 field has been changed i.e. textString
-    // has been built
+    // has been built or give an error message
     if (!textString.isEmpty())
     {
       user.save();
       Logger.info(user.firstName + "'s details changed " + textString);
+    }
+    else
+    {
+      renderText("No Profile Information has been changed! Press cancel from Edit Profile screen or change details");
     }
 
     DonationController.index();

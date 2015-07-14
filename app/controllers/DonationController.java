@@ -9,6 +9,12 @@ import models.*;
 
 public class DonationController extends Controller
 {
+  // extra security that the admin cannot get into donations.
+  // Accounts.getCurrentUser()
+  // checks logged_in_userid but when an admin is logged in, logged_in_adminid
+  // is set
+  // in Administrator.java controller
+  // so admin cannot fraudulently get in by knowing the URL.
   public static void index()
   {
     // as of story-09, this method is now called only when a User clicks on the

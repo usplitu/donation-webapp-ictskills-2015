@@ -30,6 +30,13 @@ GET /adminlogout                                    Administrator.logout
 POST /adminauthent                                  Administrator.authenticate
 GET /adminreport                                    Administrator.adminReport
 
+# Candidate page
+GET /candidate                                      CandidateController.candidIndex
+POST /candidregister                                CandidateController.candidRegister
+
+# Office page
+GET /office                                         OfficeController.officeIndex
+POST /officeregister                                OfficeController.officeRegister
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

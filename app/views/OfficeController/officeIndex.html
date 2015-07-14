@@ -1,0 +1,35 @@
+#{extends 'main.html' /} 
+#{set title:'Register an Office' /} 
+#{set activePage: 'officeCreate' /} 
+#{include 'nav.html' /}
+
+<section class="ui segment" id="sectionshad">
+  <h2 class="ui orange header">
+    <i class="building icon"></i>
+    <div class="content">
+     <h3> Create new Office </h3>
+    </div>   
+  </h2>   
+</section>
+<section class="ui form segment" id="background">  
+  <form action="/officeregister" method="POST" class="ui form">  
+    <div class="ui fluid form segment" id="bckgrdnoshad">   
+      <div class="two fields">
+        <div class="field">
+          <label>Office Title:</label>
+          <input placeholder="Office title" type="text" name="officeTitle">
+        </div>
+        <div class="field">
+          <label>Office Description:</label>
+          <input placeholder="Office description" type="text" name="officeDescript">
+        </div>        
+      </div> <!-- two fields -->    
+      <button class="ui blue submit button">Signup</button>
+      <div class="ui error message"></div>
+      <img class="ui tiny right floated image" src="/public/images/usaflagsmall.png">
+    </div> <!-- ui fluid form segment -->
+  </form>
+</section> 
+
+<script src="@{'/public/javascripts/officeIndex.js'}"></script>
+

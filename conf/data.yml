@@ -1,31 +1,82 @@
+Admin(admin1):         
+    username: admin
+    password: secret 
+    officeCreated: [president, vicepresident, chiefstaff, speaker, attorney] 
+    candidateCreated: [abamo, hilton, gumble, obriain, crosse] 
+
+Office(president):         
+    officeTitle: President
+    officeDescript: The President of the U.S.A  
+    adminBy1: admin1
+    candidates: [crosse]   
+    
+Office(vicepresident):         
+    officeTitle: Vice President
+    officeDescript: The Vice President of the U.S.A  
+    adminBy1: admin1
+    candidates: [gumble]       
+    
+Office(chiefstaff):         
+    officeTitle: Chief of Staff
+    officeDescript: Chief of Staff in the White House 
+    adminBy1: admin1
+    candidates: [hilton]     
+
+Office(speaker):         
+    officeTitle: House Speaker
+    officeDescript: House Speaker of the Senate
+    adminBy1: admin1
+    candidates: [abamo] 
+    
+Office(attorney):         
+    officeTitle: State Attorney
+    officeDescript: State Attorney for Arizona 
+    adminBy1: admin1
+    candidates: [obriain]       
+    
 Candidate(abamo):
    firstName: Abel
    lastName:  Abamo
-   email: abel@simpson.com   
+   email: abel@simpson.com  
+   password: secret
+   office: speaker 
+   adminBy2: admin1
    donations: [donation02, donation03]   
          
 Candidate(hilton):
    firstName: Celery
    lastName:  Hilton
-   email: celery@simpson.com  
+   email: celery@simpson.com 
+   password: secret
+   office: chiefstaff 
+   adminBy2: admin1
    donations: [donation01, donation04, donation10]   
  
 Candidate(gumble):
    firstName: Barney
    lastName:  Gumble
    email: barney@simpson.com  
+   password: secret
+   office: vicepresident
+   adminBy2: admin1
    donations: [donation07, donation09]   
    
 Candidate(obriain):
    firstName: Dara
    lastName:  O'Briain
    email: dara@simpson.com 
+   password: secret
+   office: attorney
+   adminBy2: admin1
    donations: []   
    
 Candidate(crosse):
    firstName: Siun
    lastName:  Crosse
    email: siun@simpson.com 
+   password: secret
+   office: president
+   adminBy2: admin1
    donations: [donation05, donation06, donation08]        
    
 User(homer):
@@ -182,6 +233,5 @@ Donation(donation10):
     from: lisa 
     candidate: hilton        
     
-Admin(admin1):         
-    username: admin
-    password: secret 
+
+      

@@ -2,8 +2,11 @@ package controllers;
 
 import play.*;
 import play.mvc.*;
+
 import java.util.*;
+
 import org.json.simple.JSONObject;
+
 import models.*;
 
 public class Accounts extends Controller
@@ -21,10 +24,25 @@ public class Accounts extends Controller
   public static void register(boolean usCitizen, String firstName, String lastName, String email, String password,
       Integer age, String state, String addr1, String addr2, String city, String zip)
   {
-    Logger.info(usCitizen + " " + firstName + " " + lastName + " " + email + " " + password + " " + age + " " + state);
-    User user = new User(usCitizen, firstName, lastName, email, password, age, state, addr1, addr2, city, zip);
-    user.save();
-    login();
+    // if trying to register a pre-existing user, give error message,
+    // else register and display Accounts.login()
+
+    User duplicateUser = User.findByEmail(email);
+
+    if (duplicateUser != null)
+    {
+      Logger
+          .info("Attempting to register a pre-existing User" + duplicateUser.firstName + " " + duplicateUser.lastName);
+      renderText("User is already registered!!");
+    }
+    else
+    {
+      Logger
+          .info(usCitizen + " " + firstName + " " + lastName + " " + email + " " + password + " " + age + " " + state);
+      User user = new User(usCitizen, firstName, lastName, email, password, age, state, addr1, addr2, city, zip);
+      user.save();
+      login();
+    }
   }
 
   public static void login()

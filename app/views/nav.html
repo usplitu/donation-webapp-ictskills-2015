@@ -61,12 +61,29 @@
 	    <a class="ui item" href="/"><i class="home icon"></i>Home</a>
 	    <a class="ui active item" href="/adminlogin"><i class="spy icon"></i>Administrator Login</a>	     
 	  #{/if}	
+	  	
 	  
 	  #{if activePage == 'adminHome'}
-	    <a class="ui active item" href="/adminreport"><i class="home icon"></i>Administrator Home</a>	    
+	    <a class="ui active item" href="/adminreport"><i class="home icon"></i>Administrator Home</a>
+	    <a class="ui item" href="/candidate"><i class="add user icon"></i>Register Candidate</a>
+	    <a class="ui item" href="/office"><i class="building icon"></i>Create Office</a>
 	    <a class="ui item"  href="/adminlogout"><i class="sign out icon"></i>Administrator LogOut </a>		             
 	  #{/if}
 	  
+	  #{if activePage == 'candidCreate'}
+	    <a class="ui item" href="/adminreport"><i class="home icon"></i>Administrator Home</a>
+	    <a class="ui active item" href="/candidate"><i class="add user icon"></i>Register Candidate</a>
+	    <a class="ui item" href="/office"><i class="building icon"></i>Create Office</a>
+	    <a class="ui item"  href="/adminlogout"><i class="sign out icon"></i>Administrator LogOut </a>		             
+	  #{/if}
+	  
+	  #{if activePage == 'officeCreate'}
+	    <a class="ui item" href="/adminreport"><i class="home icon"></i>Administrator Home</a>
+	    <a class="ui item" href="/candidate"><i class="add user icon"></i>Register Candidate</a>
+	    <a class="ui active item" href="/office"><i class="building icon"></i>Create Office</a>
+	    <a class="ui item"  href="/adminlogout"><i class="sign out icon"></i>Administrator LogOut </a>		             
+	  #{/if}  	  
+	  	  
 	  
 	  #{if activePage == 'logout'}
 	    <a class="ui item" href="/">Home</a>	    

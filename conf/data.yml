@@ -1,3 +1,33 @@
+Geolocation(geolocate1):
+   latitude: 44.008620
+   longitude: -123.074341   
+   users: [homer] 
+   
+Geolocation(geolocate2):
+   latitude: 42.360082
+   longitude: -71.058880   
+   users: [marge] 
+   
+Geolocation(geolocate3):
+   latitude: 31.360082
+   longitude: -91.058880   
+   users: [lisa] 
+   
+Geolocation(geolocate4):
+   latitude: 33.454400
+   longitude: -112.069971   
+   users: [maggie]
+   
+Geolocation(geolocate5):
+   latitude: 19.310610
+   longitude: -98.879104   
+   users: [siofra]              
+
+Geolocation(geolocate6):
+   latitude: 52.434730
+   longitude: -105.734690   
+   users: [bart]              
+
 Admin(admin1):         
     username: admin
     password: secret 
@@ -96,7 +126,9 @@ User(homer):
     addr2: 8 Privet Lane
     city: Tempe
     zip: 85252   
-    donations: [donation02, donation04]    
+    geolocate: geolocate1
+    donations: [donation02, donation04]   
+    
  
 User(marge):
     age: 40
@@ -110,6 +142,7 @@ User(marge):
     addr2: 12 Milk Street
     city: Lamington
     zip: 12345     
+    geolocate: geolocate2
     donations: [donation01, donation03]
   
 User(siofra):
@@ -123,7 +156,8 @@ User(siofra):
     addr1: House 5
     addr2: 12 Coffee Street
     city: Lamington
-    zip: 12345    
+    zip: 12345  
+    geolocate: geolocate5  
     donations: []    
    
 User(bart):
@@ -137,7 +171,8 @@ User(bart):
     addr1: Apt 7
     addr2: 12 Amiens Street
     city: Scottsdale
-    zip: 67254   
+    zip: 67254
+    geolocate: geolocate6   
     donations: [donation05, donation08]   
                      
 User(lisa):
@@ -151,7 +186,8 @@ User(lisa):
     addr1: The Penthouse
     addr2: 7 The Stockbrokers
     city: Portland
-    zip: 93587        
+    zip: 93587  
+    geolocate: geolocate3      
     donations: [donation07, donation10]                             
  
 User(maggie):
@@ -165,7 +201,8 @@ User(maggie):
     addr1: Apt 1B
     addr2: Jellycross Road
     city: Moab
-    zip: 76389    
+    zip: 76389 
+    geolocate: geolocate4   
     donations: [donation09]
     
 Donation(donation01):

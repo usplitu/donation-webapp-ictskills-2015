@@ -28,11 +28,16 @@ public class User extends Model
   public String city;
   public String zip;
 
+  // ManyToOne as a Geolocation could have many users e.g. 2 users in same
+  // apartment building
+  @ManyToOne
+  public Geolocation geolocate;
+
   @OneToMany(mappedBy = "from", cascade = CascadeType.ALL)
   List<Donation> donations = new ArrayList<Donation>();
 
   public User(boolean usaCitizen, String firstName, String lastName, String email, String password, Integer age,
-      String state, String addr1, String addr2, String city, String zip)
+      String state, String addr1, String addr2, String city, String zip, Geolocation geolocate)
 
   {
     this.usaCitizen = usaCitizen;
@@ -46,6 +51,7 @@ public class User extends Model
     this.addr2 = addr2;
     this.city = city;
     this.zip = zip;
+    this.geolocate = geolocate;
   }
 
   public static User findByEmail(String email)

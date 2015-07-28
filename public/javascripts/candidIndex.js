@@ -27,7 +27,7 @@ $('.ui.form').form({
       type : 'integer',
       prompt : 'Please select a valid Donation Target amount'
     }, {
-      type : 'not[0]',
+      type : 'regExp[/^[a-z0-9_-]{3,16}$/gi]]',
       prompt : 'You cannot select a zero target amount'
     } ]
   },

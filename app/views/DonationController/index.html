@@ -17,53 +17,68 @@
   </h2>
   <h4>Please give generously</h4>
   <div class="ui grid">
-    <div class="five wide column">
-      <form class="ui form" action="/donation/donate" method="POST">
-        <div class="ui fluid form segment" id = "bckgrdcontrast"> 
-          <div class="field">   
-            <div class="ui selection dropdown">            
-		      <input name="candidateEmail" type="hidden">
-	       	  <div class="default text">Select Candidate</div>
-			  <i class="dropdown icon"></i>
-			  <div class="menu">
-			    #{list items:candidates, as:'candidate'}
-			      <div class = "item" data-value="${candidate.email}">${candidate.firstName} ${candidate.lastName}</div>			 
-			    #{/list}		  
-              </div> <!--  div class = "menu" -->
-	        </div> <!-- ui selection dropdown -->
-	      </div> <!-- field for candidate dropdown -->
-	      <div class="field">  
-            <div class="ui selection dropdown">
-	          <input name="amountDonated" type="hidden">
-	          <div class="default text">Amount</div>
-	          <i class="dropdown icon"></i>
-	            <div class="menu">
-		          <div class="item" data-value="100">$100</div>
-	              <div class="item" data-value="500">$500</div>
-		          <div class="item" data-value="1000">$1000</div>
+    <div class="eight wide column">
+      <form class="ui form" action="/donation/donate" method="POST">  
+        <h3 class="ui orange top attached header">
+          Make a Donation
+        </h3>
+        <div class="ui attached segment">   
+          <div class="ui fluid form segment" id = "bckgrdcontrast"> 
+            <div class="field">   
+              <div class="ui selection dropdown">            
+		        <input name="candidateEmail" type="hidden">
+	         	<div class="default text">Select Candidate</div>
+			    <i class="dropdown icon"></i>
+			    <div class="menu">
+			      #{list items:candidates, as:'candidate'}
+			        <div class = "item" data-value="${candidate.email}">${candidate.firstName} ${candidate.lastName}</div>			 
+			      #{/list}		  
+                </div> <!--  div class = "menu" -->
+	          </div> <!-- ui selection dropdown -->
+	        </div> <!-- field for candidate dropdown -->
+	        <div class="field">  
+              <div class="ui selection dropdown">
+	            <input name="amountDonated" type="hidden">
+	            <div class="default text">Amount</div>
+	            <i class="dropdown icon"></i>
+	              <div class="menu">
+		            <div class="item" data-value="100">$100</div>
+	                <div class="item" data-value="500">$500</div>
+		            <div class="item" data-value="1000">$1000</div>
+		          </div>
+	          </div> <!-- ui selection dropdown -->
+	        </div> <!-- field for amount donated -->
+	        <div class="ui hidden divider"></div>
+	        <div class="grouped fields">
+	          <div class="field">
+	            <div class="ui radio checkbox">
+		          <input id="paypal" name="methodDonated" value="paypal" type="radio"
+			        		checked="checked"> <label for="paypal">PayPal</label>
+    	        </div>
+	          </div>
+	          <div class="field">
+	            <div class="ui radio checkbox">
+		          <input id="direct" name="methodDonated" value="direct" type="radio">
+		          <label for="direct">Direct</label>
 		        </div>
-	        </div> <!-- ui selection dropdown -->
-	      </div> <!-- field for amount donated -->
-	      <div class="ui hidden divider"></div>
-	      <div class="grouped fields">
-	        <div class="field">
-	          <div class="ui radio checkbox">
-		        <input id="paypal" name="methodDonated" value="paypal" type="radio"
-			      		checked="checked"> <label for="paypal">PayPal</label>
-    	      </div>
+	          </div>
 	        </div>
-	        <div class="field">
-	          <div class="ui radio checkbox">
-		        <input id="direct" name="methodDonated" value="direct" type="radio">
-		        <label for="direct">Direct</label>
-		      </div>
-	        </div>
-	      </div>
-	      <div class="ui hidden divider"></div>
-	      <button class="ui blue submit button">Donate</button>
-	      <div class="ui error message"></div>
-	    </div> <!-- ui fluid form segment -->    
+	        <div class="ui hidden divider"></div>	        
+	        <div class="ui blue submit button">Donate <i class="add icon"></i></div>
+	        <div class="ui error message"></div>
+	      </div> <!-- ui fluid form segment -->   
+	    </div>  <!-- end of attached segment -->   
       </form>
+    </div><!-- end of eight column -->
+    <div class="eight wide column"> 
+      <h3 class="ui orange top attached header">
+        Markers represent Donor locations: click to discover name
+      </h3>
+      <div class="ui attached segment">     
+        <div class="ui fluid form segment">      
+          <div id="map-canvas" style="width:580px;height:380px;"></div> 
+        </div> <!-- end of fluid form segment -->  
+      </div>  <!-- end of attached segment -->  
     </div><!-- end of eight column -->
   </div><!-- end of grid -->     
   <hr>
@@ -81,6 +96,10 @@
   <img class="ui tiny right floated image" src="/public/images/usaflagsmall.png">		
 </section>
 
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script src="@{'/public/javascripts/map3.js'}"></script>
+
+<!-- <script src="http://maps.googleapis.com/maps/api/js"></script> -->
 <script src="@{'/public/javascripts/donate.js'}"></script>
 <script>  
   $('#progress').progress('increment', '${progress}');  

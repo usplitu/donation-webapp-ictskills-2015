@@ -108,15 +108,30 @@ public class DonationController extends Controller
     else
     {
       Candidate candidate = Candidate.findByEmail(candidateEmail);
-      addDonation(user, amountDonated, methodDonated, candidate);
 
-      // after a donation has been created, run the new method below to
-      // calculate progress
-      // and redisplay index.html. The reason why individual candidate fields
-      // are passed
-      // instead of the
-      // candidate object John, is explained in the method.
-      indexRealProgress(candidateEmail, candidate.firstName, candidate.lastName, candidate.donationTarget);
+      // check if this donation will push a candidates donations past their
+      // target. If so, give an error message
+      // If not, continue by adding the donation and calculating progress bar.
+
+      Long total = getCandidateDonations(candidateEmail);
+
+      if ((total + amountDonated) > candidate.donationTarget)
+      {
+        renderText("Candidates donations already amount to " + total + " Can't accept a donation of " + amountDonated
+            + " as it will push them past their donation target of " + candidate.donationTarget);
+      }
+      else
+      {
+        addDonation(user, amountDonated, methodDonated, candidate);
+
+        // after a donation has been created, run the new method below to
+        // calculate progress
+        // and redisplay index.html. The reason why individual candidate fields
+        // are passed
+        // instead of the
+        // candidate object John, is explained in the method.
+        indexRealProgress(candidateEmail, candidate.firstName, candidate.lastName, candidate.donationTarget);
+      }
     }
 
   }
@@ -127,12 +142,15 @@ public class DonationController extends Controller
     bal.save();
   }
 
-  public static String getPercentTargetAchieved(String candidateEmail, Long candidateTarget)
+  public static Long getCandidateDonations(String candidateEmail)
   {
-    // Just find the donations (includes the one just created) that pertain to
-    // the current
-    // candidate when calculating the progress %. Also get the candidate Target
-    // amount
+    // Just find the donations that pertain to
+    // the current candidate. Called both when calculating values for the
+    // progress bar
+    // (getgetPercentTargetAchieved) and when a User is making a donation
+    // (addDonation)
+    // as you need to check will the Candidate exceed their Target if they
+    // accept the donation
 
     List<Donation> allDonations = Donation.findAll();
     long total = 0;
@@ -145,11 +163,52 @@ public class DonationController extends Controller
       }
     }
 
+    return total;
+  }
+
+  public static String getPercentTargetAchieved(String candidateEmail, Long candidateTarget)
+  {
+    // Just find the donations that pertain to
+    // the current candidate when calculating the progress %. Also get the
+    // candidate Target
+    // amount
+
+    // Calculate total of all Donations for the Candidate
+    Long total = getCandidateDonations(candidateEmail);
     long target = candidateTarget;
-    long percentachieved = (total * 100 / target);
-    String progress = String.valueOf(percentachieved);
+    long percentAchieved = (total * 100 / target);
+    // if Candidate donations have exceeded their target amount, set
+    // percentAchieved to 100.
+    percentAchieved = percentAchieved > 100 ? 100 : percentAchieved;
+    String progress = String.valueOf(percentAchieved);
     Logger.info("In getPercentTargetAchieved total " + total + " progress " + progress);
     return progress;
+  }
+  
+  /**
+   * Create list sample positional data
+   * Necessary to add json-simple-1.1.jar or equivalent to lib folder
+   * Then add jar to build path and import here
+   */
+  public static void listGeolocations()
+  {
+    //build a list of all Users in the system and their geolocations
+    //then pass to map in DonationController/index.html to display as markers
+    List<List<String>> jsonArray = new ArrayList<List<String>>();
+    List<User> allUsers = User.findAll();
+    int counter = 0;
+    
+    for (User users : allUsers)
+    {
+      jsonArray.add(counter, Arrays.asList(users.firstName, users.geolocate.latitude, users.geolocate.longitude));
+      counter += 1;
+    }
+    
+    
+    //jsonArray.add(0, Arrays.asList("Position 1", "44.008620", "-123.074341"));
+    //jsonArray.add(1, Arrays.asList("Position 2", "42.360082", "-71.058880"));
+    //jsonArray.add(2, Arrays.asList("Position 3", "31.360082", "-91.058880"));
+    renderJSON(jsonArray);
   }
 
 }

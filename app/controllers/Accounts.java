@@ -22,10 +22,11 @@ public class Accounts extends Controller
   }
 
   public static void register(boolean usCitizen, String firstName, String lastName, String email, String password,
-      Integer age, String state, String addr1, String addr2, String city, String zip)
+      Integer age, String state, String addr1, String addr2, String city, String zip, String lat, String lng)  
   {
     // if trying to register a pre-existing user, give error message,
     // else register and display Accounts.login()
+    Logger.info("lat " + lat + " lng " + lng);
 
     User duplicateUser = User.findByEmail(email);
 
@@ -39,7 +40,11 @@ public class Accounts extends Controller
     {
       Logger
           .info(usCitizen + " " + firstName + " " + lastName + " " + email + " " + password + " " + age + " " + state);
-      User user = new User(usCitizen, firstName, lastName, email, password, age, state, addr1, addr2, city, zip);
+      
+      // Get the user's geolocation, create Geolocation object, then add to User constructor      
+      Geolocation newLocation = new Geolocation(lat, lng);
+      newLocation.save();
+      User user = new User(usCitizen, firstName, lastName, email, password, age, state, addr1, addr2, city, zip, newLocation);
       user.save();
       login();
     }

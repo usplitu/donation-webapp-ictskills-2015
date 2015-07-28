@@ -1,10 +1,5 @@
 $('.ui.checkbox').checkbox();
 $('.ui.dropdown').dropdown();
-
-// had to create input fields for latitude/longitude so the form serialize command would send them
-//to the Accounts/register method. But hide them on screen in a div when it loads as don't want the user to see them
-$('#latlng').hide();
-
 $('.ui.form').form({
   firstName : {
     identifier : 'firstName',
@@ -92,48 +87,36 @@ $('.ui.form').form({
 
 {
   onSuccess : function() {
-    getGeolocation();      
-    return false;
+    getGeolocation();
+   return false;
   }
 
 });
 
 function getGeolocation() {
-//If all fields are fine, get the latitude/longitude of the state and zip
-  // code by using Google Geocoder
+  // If all fields are fine, get the latitude/longitude of the state and zip code
   // then pass to Accounts/register and add to User that is being created
 
-  var myAddressQuery = document.getElementById("stateForGeo").value + " "
-      + document.getElementById("zipForGeo").value;  
-  var geocoder = new google.maps.Geocoder();
   
-  geocoder.geocode( { 'address': myAddressQuery}, function(results, status) {
-     if (status == google.maps.GeocoderStatus.OK) {
-       document.getElementById("latitude").value = results[0].geometry.location.lat();
-       document.getElementById("longitude").value = results[0].geometry.location.lng();
-       //var lat = results[0].geometry.location.lat();
-       //var lng = results[0].geometry.location.lng();
-       //document.getElementById("latitude").value = lat;       
-       //document.getElementById("longitude").value = lng;      
-       registerUser(); 
-     } else {
-       alert("Geocode was not successful for the following reason: " + status);
-     }
-   });
- } //end of function getGeolocation
+  var myAddressQuery = document.getElementById("stateForGeo").value + " " + document.getElementById("zipForGeo").value ;  
+  alert('myaddresquery' + myAddressQuery);  
+  var geocoder = new google.maps.Geocoder();
+  geocoder.geocode({
+    address : myAddressQuery,
+    region : 'no'
+  }, function(results, status) {
+    // result contains an array of hits.
+    if (status == google.maps.GeocoderStatus.OK) {
+      alert('lat and lon ' + results[0].geometry.location);      
+      var lat = results[0].geometry.location.lat();
+      var lng = results[0].geometry.location.lng();
+      alert('lat  ' + lat);  
+      alert('long  ' + lng);  
+     
+     
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);      
+    }
+  });
 
-
-  function registerUser() {    
-    var formData = $('.ui.form.segment input').serialize();
-    
-    $.ajax({
-      url : "/register",
-      type : 'POST',
-      data : formData,     
-      success : function() {
-        window.location.assign("/login");
-        console.log("user signed up");
-      }
-    });//end of AJAX  
-
-} //end of function registerUser
+}

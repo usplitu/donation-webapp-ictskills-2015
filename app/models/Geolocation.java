@@ -18,9 +18,9 @@ public class Geolocation extends Model
 {
   public String latitude;
   public String longitude;
-  
 
-  // OneToMany as a Geolocation could have many users e.g. 2 users in same apartment building
+  // OneToMany as a Geolocation could have many users e.g. 2 users in same
+  // apartment building
   @OneToMany(mappedBy = "geolocate", cascade = CascadeType.ALL)
   List<User> users = new ArrayList<User>();
 
@@ -28,6 +28,6 @@ public class Geolocation extends Model
 
   {
     this.latitude = latitude;
-    this.longitude = longitude;   
-  } 
+    this.longitude = longitude;
+  }
 }

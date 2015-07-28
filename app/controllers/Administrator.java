@@ -39,7 +39,8 @@ public class Administrator extends Controller
       // in.
       session.put("logged_in_adminid", admin.id);
 
-      // if login successful, communicate back to AJAX call in adminlogin.js and that
+      // if login successful, communicate back to AJAX call in adminlogin.js and
+      // that
       // will handle next screen
       JSONObject obj = new JSONObject();
       String value = "correct";

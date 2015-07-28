@@ -52,7 +52,8 @@
         <div class="field">
           <label>Location (State):</label>        
           <div class="ui selection dropdown">
-		    <input name="state" type="hidden" id="stateForGeo">
+            <!--  see geolocate.js for explanation for resetLatLng function -->
+		    <input name="state" type="hidden" id="stateForGeo" onchange="resetLatLng()">
 			<div class="default text">State</div>
 			<i class="dropdown icon"></i>
 			<div class="menu">
@@ -108,9 +109,10 @@
             </div> <!--  div class = "menu" -->
 	      </div> <!-- ui selection dropdown -->
         </div> <!-- state field -->
+        <!--  see geolocate.js for explanation for resetLatLng function -->
         <div class="field">
           <label>Zip Code:</label>          
-          <input placeholder="Zip" type="text" name="zip" id="zipForGeo">
+          <input placeholder="Zip" type="text" name="zip" id="zipForGeo" oninput="resetLatLng()">
         </div>
       </div> <!--  three fields for city/state/zip -->
       <div class="two fields">
@@ -126,8 +128,15 @@
           </div>        
         </div>
       </div><!--  two fields for email/password --> 
-      <!--   had to create input fields for latitude/longitude so the AJAX form serialize command would send them
-             to the Accounts/register method. But hide them on screen in a div when it loads as don't want the user to see them-->
+      
+      <!--   had to create input fields for latitude/longitude so Google Geocode can return them and add to the User
+             when signed up. If successfully found, don't allow the User to edit and create a User with rubbish data
+             in these fields so set as disabled. When page first loads, hide them as the user will notice more if they
+             hadn't appeared before -- better feedback -->
+             
+      <h2 id="latlnginfo"> Please click the 'Get Latitude/Longitude' button below to get the location of your address before hitting 'Signup'. </h2> 
+      <hr>      
+      <div class="ui orange button" onclick="getGeolocation()">Get Latitude/Longitude</div>       
       <div class="two fields" id="latlng">
         <div class="field">
           <label>Latitude:</label>
@@ -135,7 +144,7 @@
         </div>
         <div class="field">
           <label>Longitude:</label>
-           <input id="longitude"  type="text"  name="lng" >             
+           <input id="longitude"  type="text"  name="lng">             
         </div>
       </div><!--  two fields for lat/lng -->   
       <button class="ui blue submit button">Signup</button>
@@ -146,7 +155,8 @@
 </section> 
 
 <!-- for GeoCode -->
-<!-- <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script> -->
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script> 
+
 <script src="@{'/public/javascripts/signup.js'}"></script>
+<script src="@{'/public/javascripts/geolocate.js'}"></script>
 

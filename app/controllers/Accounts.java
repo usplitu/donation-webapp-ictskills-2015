@@ -22,11 +22,10 @@ public class Accounts extends Controller
   }
 
   public static void register(boolean usCitizen, String firstName, String lastName, String email, String password,
-      Integer age, String state, String addr1, String addr2, String city, String zip, String lat, String lng)  
+      Integer age, String state, String addr1, String addr2, String city, String zip, String lat, String lng)
   {
     // if trying to register a pre-existing user, give error message,
     // else register and display Accounts.login()
-    Logger.info("lat " + lat + " lng " + lng);
 
     User duplicateUser = User.findByEmail(email);
 
@@ -40,11 +39,13 @@ public class Accounts extends Controller
     {
       Logger
           .info(usCitizen + " " + firstName + " " + lastName + " " + email + " " + password + " " + age + " " + state);
-      
-      // Get the user's geolocation, create Geolocation object, then add to User constructor      
+
+      // Get the user's geolocation, create Geolocation object, then add to User
+      // constructor
       Geolocation newLocation = new Geolocation(lat, lng);
       newLocation.save();
-      User user = new User(usCitizen, firstName, lastName, email, password, age, state, addr1, addr2, city, zip, newLocation);
+      User user = new User(usCitizen, firstName, lastName, email, password, age, state, addr1, addr2, city, zip,
+          newLocation);
       user.save();
       login();
     }
@@ -82,7 +83,6 @@ public class Accounts extends Controller
       Logger.info("Successfull authentication of " + user.firstName + " " + user.lastName);
       session.put("logged_in_userid", user.id);
 
-      // jg070615 commented as used JSON - DonationController.index();
       // if login successful, communicate back to AJAX call in login.js and that
       // will handle next screen
       JSONObject obj = new JSONObject();
@@ -98,7 +98,7 @@ public class Accounts extends Controller
       String value = "Error: Incorrect Email/Password entered.";
       obj.put("inputdata", value);
       renderJSON(obj);
-      // jg070615 commented as used JSON - login();
+
       // if login unsuccessful, communicate back to AJAX call in login.js and
       // that will redisplay login.html with error
     }

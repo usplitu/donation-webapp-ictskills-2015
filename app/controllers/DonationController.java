@@ -147,7 +147,7 @@ public class DonationController extends Controller
     // Just find the donations that pertain to
     // the current candidate. Called both when calculating values for the
     // progress bar
-    // (getgetPercentTargetAchieved) and when a User is making a donation
+    // (getPercentTargetAchieved) and when a User is making a donation
     // (addDonation)
     // as you need to check will the Candidate exceed their Target if they
     // accept the donation
@@ -184,30 +184,25 @@ public class DonationController extends Controller
     Logger.info("In getPercentTargetAchieved total " + total + " progress " + progress);
     return progress;
   }
-  
+
   /**
-   * Create list sample positional data
-   * Necessary to add json-simple-1.1.jar or equivalent to lib folder
-   * Then add jar to build path and import here
+   * Create list sample positional data Necessary to add json-simple-1.1.jar or
+   * equivalent to lib folder Then add jar to build path and import here
    */
   public static void listGeolocations()
   {
-    //build a list of all Users in the system and their geolocations
-    //then pass to map in DonationController/index.html to display as markers
+    // build a list of all Users in the system and their geolocations
+    // then pass to map in DonationController/index.html to display as markers
     List<List<String>> jsonArray = new ArrayList<List<String>>();
     List<User> allUsers = User.findAll();
     int counter = 0;
-    
+
     for (User users : allUsers)
     {
       jsonArray.add(counter, Arrays.asList(users.firstName, users.geolocate.latitude, users.geolocate.longitude));
       counter += 1;
     }
-    
-    
-    //jsonArray.add(0, Arrays.asList("Position 1", "44.008620", "-123.074341"));
-    //jsonArray.add(1, Arrays.asList("Position 2", "42.360082", "-71.058880"));
-    //jsonArray.add(2, Arrays.asList("Position 3", "31.360082", "-91.058880"));
+
     renderJSON(jsonArray);
   }
 

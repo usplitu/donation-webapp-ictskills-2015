@@ -28,7 +28,7 @@ public class EditProfile extends Controller
   }
 
   public static void settingsChange(Long id, String firstName, String lastName, Integer age, String state,
-      String addr1, String addr2, String city, String zip)
+      String addr1, String addr2, String city, String zip, String lat, String lng)
   {
 
     Logger.info("just in settingsChange " + firstName);
@@ -73,10 +73,18 @@ public class EditProfile extends Controller
       user.addr2 = addr2;
     }
 
+    // zip and state must be changed in unison so get correct geolocation and
+    // rewrite in this situation
+    // so no need to check if zip has changed or state has changed - just one
+    // will do
     if (!zip.isEmpty())
     {
       textString += " Zip: old: " + user.zip + " new: " + zip;
       user.zip = zip;
+      Geolocation geolocate = Geolocation.findById(user.geolocate.id);
+      geolocate.latitude = lat;
+      geolocate.longitude = lng;
+      geolocate.save();
     }
 
     if (!(age == null))

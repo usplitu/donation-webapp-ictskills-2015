@@ -69,7 +69,7 @@ Candidate(abamo):
    lastName:  Abamo
    email: abel@simpson.com  
    password: secret
-   donationTarget: 500
+   donationTarget: 2000
    office: speaker 
    adminBy2: admin1
    donations: [donation02, donation03]   

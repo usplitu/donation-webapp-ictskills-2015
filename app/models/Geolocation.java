@@ -30,4 +30,11 @@ public class Geolocation extends Model
     this.latitude = latitude;
     this.longitude = longitude;
   }
+
+  // used in EditProfile.java where a User's state and zip has been changed
+  // the lat and lng must also be changed
+  public static Geolocation findById(Integer id)
+  {
+    return find("id", id).first();
+  }
 }

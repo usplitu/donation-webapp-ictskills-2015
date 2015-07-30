@@ -11,19 +11,19 @@
     </div>   
   </h2>   
 </section> 
-<section class="ui form segment" id = "background">
+<section class="ui segment" id = "background">
   <h2 class = "ui orange header" >
     Welcome ${user.firstName} 
   </h2>
   <h4>Please give generously</h4>
   <div class="ui grid">
-    <div class="eight wide column">
-      <form class="ui form" action="/donation/donate" method="POST">  
+    <div class="eight wide column">      
+      <form class="ui form segment"> 
         <h3 class="ui orange top attached header">
           Make a Donation
         </h3>
         <div class="ui attached segment">   
-          <div class="ui fluid form segment" id = "bckgrdcontrast"> 
+          <div class="ui fluid segment" id = "bckgrdcontrast"> 
             <div class="field">   
               <div class="ui selection dropdown">            
 		        <input name="candidateEmail" type="hidden">
@@ -63,9 +63,20 @@
 		        </div>
 	          </div>
 	        </div>
-	        <div class="ui hidden divider"></div>	        
-	        <div class="ui blue submit button">Donate <i class="add icon"></i></div>
-	        <div class="ui error message"></div>
+	        <hr>
+	        <!-- Percent target reached - red label  -->                              
+            <div id="targetReached"></div>
+	        <!--   AJAX notification notificationbox introduced to hide entire container.
+	               AJAX messages will appear here from donate.js -->
+            <div class="ui fluid form segment" id="notificationBox">
+              <div id="notification"></div>
+            </div>
+	        <div class="ui hidden divider"></div>
+	        <!--   Submit form button  -->
+            <div class="form-actions">
+              <div class="ui blue submit button">Donate <i class="add icon"></i></div>
+              <div class="ui error message"></div>
+            </div>		                    
 	      </div> <!-- ui fluid form segment -->   
 	    </div>  <!-- end of attached segment -->   
       </form>
@@ -83,24 +94,20 @@
   </div><!-- end of grid -->     
   <hr>
   <h3>Amount target achieved</h3>
-  <!-- Donation progress  -->
-  <div class="ui segment">
+  <!-- Donation progress  -->  
+   
+  <div class="ui segment">   
     <div class="ui indicating progress" id="progress">
-	  <div class="bar">
-	    <div class="progress"></div>
-	  </div>
-	</div>	
-  </div>
-  <div class="ui teal big label">${progress} target achieved to
-		date for candidate ${fullName}</div>
+      <div class="bar">
+        <div class="progress"></div>
+      </div>
+      <div class="label" id="progresslabel"></div>     
+    </div>
+  </div> 
+  
   <img class="ui tiny right floated image" src="/public/images/usaflagsmall.png">		
 </section>
 
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 <script src="@{'/public/javascripts/map3.js'}"></script>
-
-
 <script src="@{'/public/javascripts/donate.js'}"></script>
-<script>  
-  $('#progress').progress('increment', '${progress}');  
-</script>

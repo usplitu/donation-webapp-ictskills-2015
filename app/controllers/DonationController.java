@@ -5,6 +5,8 @@ import play.mvc.*;
 
 import java.util.*;
 
+import org.json.simple.JSONObject;
+
 import models.*;
 
 public class DonationController extends Controller
@@ -37,13 +39,13 @@ public class DonationController extends Controller
       List<Candidate> candidates = Candidate.findAll();
 
       // want an empty progress bar first time through before donating and no
-      // candidate name - fake them!
-      String progress = "0%";
-      String fullName = "";
-      // add new parameter of fullName to render for bar
-      // so the same html page can be used when we actually donate to a
-      // candidate
-      render(user, candidates, progress, fullName);
+      // candidate name - fake them in donate.js!
+      // User passed as needed for name display on Logout tab - see nav.html
+      // When the User is logged in, I uniformly display their name on Logout
+      // tab
+      // to improve UX
+
+      render(user, candidates);
 
     }
   }
@@ -73,9 +75,6 @@ public class DonationController extends Controller
     }
     else
     {
-      // render candidates for dropdown
-      List<Candidate> candidates = Candidate.findAll();
-
       // now get real values for the progress bar and candidate name for under
       // it in the label
       // after we have a donation, call this instead of index passing in
@@ -87,14 +86,22 @@ public class DonationController extends Controller
       String fullName = candidateFirstName + " " + candidateLastName;
       Logger.info("Donation ctrler : candidate is " + fullName);
       Logger.info("Donation ctrler : percent target achieved " + progress);
-      // as above in index method, add parameter of fullName
-      renderTemplate("DonationController/index.html", user, candidates, progress, fullName);
+
+      // create JSON object to pass to donate.js AJAX so entire html page
+      // doesn't reload
+      JSONObject obj = new JSONObject();
+      obj.put("progress", progress);
+      obj.put("fullName", fullName);
+      String value = "Your donation has been successfully registered to " + fullName + ".";
+      obj.put("accepted", value);
+      renderJSON(obj);
 
     }
   }
 
-  public static void donate(long amountDonated, String methodDonated, String candidateEmail)
+  public static void donate(Long amountDonated, String methodDonated, String candidateEmail)
   {
+
     Logger.info("amount donated " + amountDonated + " " + "method donated " + methodDonated + " " + "candidateEmail "
         + candidateEmail);
 
@@ -117,8 +124,19 @@ public class DonationController extends Controller
 
       if ((total + amountDonated) > candidate.donationTarget)
       {
-        renderText("Candidates donations already amount to " + total + " Can't accept a donation of " + amountDonated
-            + " as it will push them past their donation target of " + candidate.donationTarget);
+        String progress = "100%";
+        String fullName = candidate.firstName + " " + candidate.lastName;
+
+        // create JSON object to pass to donate.js AJAX so entire html page
+        // doesn't reload
+        JSONObject obj = new JSONObject();
+        obj.put("progress", progress);
+        obj.put("fullName", fullName);
+        String value = "Candidates donations already amount to " + total + " Can't accept a donation of "
+            + amountDonated + " as it will push them past their donation target of " + candidate.donationTarget;
+        obj.put("accepted", value);
+        renderJSON(obj);
+
       }
       else
       {
@@ -126,7 +144,7 @@ public class DonationController extends Controller
 
         // after a donation has been created, run the new method below to
         // calculate progress
-        // and redisplay index.html. The reason why individual candidate fields
+        // and redisplay html. The reason why individual candidate fields
         // are passed
         // instead of the
         // candidate object John, is explained in the method.
@@ -136,7 +154,7 @@ public class DonationController extends Controller
 
   }
 
-  private static void addDonation(User user, long amountDonated, String methodDonated, Candidate candidate)
+  private static void addDonation(User user, Long amountDonated, String methodDonated, Candidate candidate)
   {
     Donation bal = new Donation(user, amountDonated, methodDonated, candidate);
     bal.save();
@@ -153,7 +171,7 @@ public class DonationController extends Controller
     // accept the donation
 
     List<Donation> allDonations = Donation.findAll();
-    long total = 0;
+    Long total = 0L;
 
     for (Donation donation : allDonations)
     {
@@ -175,8 +193,9 @@ public class DonationController extends Controller
 
     // Calculate total of all Donations for the Candidate
     Long total = getCandidateDonations(candidateEmail);
-    long target = candidateTarget;
-    long percentAchieved = (total * 100 / target);
+    Long target = candidateTarget;
+    Long percentAchieved = (total * 100 / target);
+
     // if Candidate donations have exceeded their target amount, set
     // percentAchieved to 100.
     percentAchieved = percentAchieved > 100 ? 100 : percentAchieved;

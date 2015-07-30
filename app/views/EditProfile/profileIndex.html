@@ -49,7 +49,7 @@
         <div class="field">
           <label>Location (State):</label>        
           <div class="ui selection dropdown">
-		    <input name="state" type="hidden">
+		    <input name="state" type="hidden" id="stateForGeo" onchange="resetLatLng()">
 			<div class="default text">${user.state}</div>
 			<i class="dropdown icon"></i>
 			<div class="menu">
@@ -107,7 +107,7 @@
         </div> <!-- state field -->  
         <div class="field">
           <label>Zip:</label>
-          <input placeholder=${user.zip} type="text" name="zip">
+          <input placeholder=${user.zip} type="text" name="zip" id="zipForGeo" oninput="resetLatLng()">
         </div>    
       </div><!-- three fields -->  
       <div class="two fields">
@@ -123,6 +123,22 @@
           </div>              
         </div>
       </div> <!-- two fields --> 
+      <!-- latlng notification box only appears if a User changes state/zip -->     
+      <div class="ui fluid form segment" id="notificationBox" >       
+        <h3 id="latlnginfo"> You've changed zip/state Please click the 'Get Latitude/Longitude' button below to get the location of your address before hitting 'Signup'. </h3> 
+        <hr>      
+        <div class="ui orange button" id="notButton" onclick="getGeolocation()">Get Latitude/Longitude</div>       
+        <div class="two fields" id="latlng">
+          <div class="field">
+            <label>Latitude:</label>
+            <input id="latitude" type="text"  name="lat">
+          </div>
+          <div class="field">
+            <label>Longitude:</label>
+             <input id="longitude" type="text"  name="lng">             
+          </div>
+        </div><!--  two fields for lat/lng -->        
+      </div> <!-- lat lng notification box -->    
       <button class="ui blue submit button">Submit</button>     
       <button class="ui blue submit button" onClick="goBack()">Cancel</button>      
       <div class="ui error message"></div>
@@ -132,3 +148,6 @@
 </section>
 
 <script src="@{'/public/javascripts/profileindex.js'}"></script>
+<script src="@{'/public/javascripts/geolocateProfile.js'}"></script>
+<!-- for GeoCode -->
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script> 

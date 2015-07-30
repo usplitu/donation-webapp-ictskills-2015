@@ -131,20 +131,20 @@
       
       <!--   had to create input fields for latitude/longitude so Google Geocode can return them and add to the User
              when signed up. If successfully found, don't allow the User to edit and create a User with rubbish data
-             in these fields so set as disabled. When page first loads, hide them as the user will notice more if they
+             in these fields. When page first loads, hide them as the user will notice more if they
              hadn't appeared before -- better feedback -->
              
-      <h2 id="latlnginfo"> Please click the 'Get Latitude/Longitude' button below to get the location of your address before hitting 'Signup'. </h2> 
+      <h3 id="latlnginfo"> Please click the 'Get Latitude/Longitude' button below to get the location of your address before hitting 'Signup'. </h3> 
       <hr>      
       <div class="ui orange button" onclick="getGeolocation()">Get Latitude/Longitude</div>       
       <div class="two fields" id="latlng">
         <div class="field">
           <label>Latitude:</label>
-          <input id="latitude" type="text"  name="lat">
+          <input id="latitude" type="text"  name="lat" oninput="userChangedCoords()">
         </div>
         <div class="field">
           <label>Longitude:</label>
-           <input id="longitude"  type="text"  name="lng">             
+           <input id="longitude"  type="text"  name="lng" oninput="userChangedCoords()">             
         </div>
       </div><!--  two fields for lat/lng -->   
       <button class="ui blue submit button">Signup</button>

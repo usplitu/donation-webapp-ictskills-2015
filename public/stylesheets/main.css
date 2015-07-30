@@ -6,7 +6,7 @@
 }
 
 /* same as #background with no shadow. Used in divs  */
-#bckgrdnoshad
+#bckgrdnoshad, #sectionnoshad
 {
   background-color: #ffffa4;  
 }

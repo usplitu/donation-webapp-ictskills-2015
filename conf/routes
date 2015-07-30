@@ -39,6 +39,9 @@ POST /candidregister                                CandidateController.candidRe
 GET /office                                         OfficeController.officeIndex
 POST /officeregister                                OfficeController.officeRegister
 
+# Donor Location page
+GET /donorlocation                                  DonorLocation.locateIndex
+
 # Ignore favicon requests
 GET     /favicon.ico                            404
 

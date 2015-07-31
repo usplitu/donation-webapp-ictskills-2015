@@ -10,13 +10,15 @@ $('.ui.indicating.progress').progress({
 // div container for AJAX response completely disappears on page load
 $('#notificationBox').hide();
 
-// this was necessary when I implemented AJAX as message appears when you
-// previously had a successful donation
-// You want this message to disappear when you are entering another donation
-// also hide the div container #notificationbox
-// also hide #target - user may have gotten a warning that their donation would
-// be over target
-// but they may then decide to enter a smaller donation so hide #target
+/**
+ * this was necessary when I implemented AJAX as message appears when you
+ * previously had a successful donation.
+ * You want this message to disappear when you are entering another donation.
+ * Also hide the div container #notificationbox.
+ * Also hide #target - user may have gotten a warning that their donation would
+ * be over target but they may then decide to enter a smaller donation so
+ * hide #target
+ */
 $('.ui.form').click(function() {
   $('#notification').html("");
   $('#notificationBox').hide("slow");
@@ -48,8 +50,10 @@ $('.ui.form').form({
   }
 });
 
-// AJAX to send progress bar percent, candidate name + whether donation was
-// successful to html
+/**
+ * AJAX to send progress bar percent, candidate name + whether donation was
+ * successful to html
+ */
 function submitForm() {
   var formData = $('.ui.form.segment input').serialize();
   $.ajax({
@@ -70,9 +74,20 @@ function submitForm() {
             '<div id="target" class="ui red label">Target reached</div>');
       }
 
-      $('#notification').html(response.accepted); // output whether donation
-                                                  // successful or can't be
-                                                  // accepted
+      /**
+       * couldn't have changed the colour attribute below in the response = 100% check
+       * statement as also want to give a warning if we are not at 100% of the target yet
+       * but accepting the donation would push us over 100% so in that case progress is not
+       * 100% BEFORE the donation 
+       */
+      if (response.colorattrb === 'warning') {
+        $('#notification').css('color', 'red');
+      } else {
+        $('#notification').css('color', 'black');
+      }
+
+      // output whether donation successful or can't be accepted      
+      $('#notification').html(response.accepted);
       $('#notificationBox').show("fast");
 
       $('.ui.indicating.progress').progress({

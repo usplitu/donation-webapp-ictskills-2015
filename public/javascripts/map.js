@@ -21,14 +21,14 @@ function initialize() {
   });
   // To add the marker to the map, call setMap();
   marker.setMap(map);
-  //marker listener populates hidden fields ondragend
+  // marker listener populates hidden fields ondragend
   google.maps.event.addListener(marker, 'dragend', function() {
     var latLng = marker.getPosition();
     var latlong = latLng.lat().toString().substring(0, 10) + ','
         + latLng.lng().toString().substring(0, 10);
-    //publish lat long in geolocation control in html page
+    // publish lat long in geolocation control in html page
     $("#geolocation").val(latlong);
-    //update the new marker position
+    // update the new marker position
     map.setCenter(latLng);
   });
 }

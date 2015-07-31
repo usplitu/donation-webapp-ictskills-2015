@@ -28,11 +28,13 @@ public class Candidate extends Model
   @ManyToOne
   public Office office;
 
-  // mapped the Admin to the Candidates and Offices they created as need to link
-  // them to some tables in system.
-  // In the future, more fields may be added to the Admin model, that extra
-  // future functionality might require
-  // allow for that possibility
+  /**
+   * mapped the Admin to the Candidates and Offices they created as need to link
+   * them to some tables in system. In the future, more fields may be added to
+   * the Admin model, that extra future functionality might require. Allow for
+   * that possibility.
+   */
+
   @ManyToOne
   public Admin adminBy2;
 
@@ -44,7 +46,8 @@ public class Candidate extends Model
   {
     this.firstName = firstName;
     this.lastName = lastName;
-    this.email = email;
+    this.email = email.toLowerCase(); // will always be saved in lwrcase -
+                                      // facilitates find;
     this.password = password;
     this.donationTarget = donationTarget;
     this.office = office;

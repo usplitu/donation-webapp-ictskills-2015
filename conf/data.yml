@@ -35,31 +35,31 @@ Admin(admin1):
     candidateCreated: [abamo, hilton, gumble, obriain, crosse] 
 
 Office(president):         
-    officeTitle: President
+    officeTitle: president
     officeDescript: The President of the U.S.A  
     adminBy1: admin1
     candidates: [crosse]   
     
 Office(vicepresident):         
-    officeTitle: Vice President
+    officeTitle: vice president
     officeDescript: The Vice President of the U.S.A  
     adminBy1: admin1
     candidates: [gumble]       
     
 Office(chiefstaff):         
-    officeTitle: Chief of Staff
+    officeTitle: chief of staff
     officeDescript: Chief of Staff in the White House 
     adminBy1: admin1
     candidates: [hilton]     
 
 Office(speaker):         
-    officeTitle: House Speaker
+    officeTitle: house speaker
     officeDescript: House Speaker of the Senate
     adminBy1: admin1
     candidates: [abamo] 
     
 Office(attorney):         
-    officeTitle: State Attorney
+    officeTitle: state attorney
     officeDescript: State Attorney for Arizona 
     adminBy1: admin1
     candidates: [obriain]       

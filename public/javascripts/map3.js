@@ -1,5 +1,6 @@
 var map; // the google map
-var latlng = []; // geolocation data later retrieved from server in func callback
+var latlng = []; // geolocation data later retrieved from server in func
+                  // callback
 var markers = []; // array of all markers (unfiltered)
 
 /**
@@ -11,25 +12,23 @@ function initialize() {
 }
 
 /**
- * The basic map, no markers, no centre specified
- * Canvas id on html is 'map-canvas'
+ * The basic map, no markers, no centre specified Canvas id on html is
+ * 'map-canvas'
  */
 function rendermap() {
   var mapProp = {
     mapTypeId : google.maps.MapTypeId.ROADMAP
   };
-  //map = new google.maps.Map(document.getElementById("map-canvas"), mapProp); // using vanilla js
+  // map = new google.maps.Map(document.getElementById("map-canvas"), mapProp);
+  // // using vanilla js
   map = new google.maps.Map($("#map-canvas")[0], mapProp); // using jQuery
 }
 
 /**
- * Use ajax call to get users and their geolocations
- * pass returned array marker locations to callback method
- * Here is the format in which marker data stored
- * geoObj[0] is descripion.             
- * geoObj[1] is latitude                              
- * geoObj[2] is longitude  
- * We use geoObj[0] in the infoWindow. Click marker to reveal description.
+ * Use ajax call to get users and their geolocations pass returned array marker
+ * locations to callback method Here is the format in which marker data stored
+ * geoObj[0] is descripion. geoObj[1] is latitude geoObj[2] is longitude We use
+ * geoObj[0] in the infoWindow. Click marker to reveal description.
  */
 function retrieveMarkerLocations() {
   $(function() {
@@ -43,21 +42,21 @@ function retrieveMarkerLocations() {
 }
 
 /**
- * we've got the marker location from data in ajax call
- * we now put data into an array
- * the format is 'firstName, xx.xxxx, yy.yyyyy' -> (firstName, lat, lng)
- * then invoke 'fitBounds' to render the markers, centre map and create infoWindow to display firstName
+ * we've got the marker location from data in ajax call we now put data into an
+ * array the format is 'firstName, xx.xxxx, yy.yyyyy' -> (firstName, lat, lng)
+ * then invoke 'fitBounds' to render the markers, centre map and create
+ * infoWindow to display firstName
  */
 function callback(data) {
 
   latlng = data; // store the array of data in a global for later use
-  fitBounds(latlng); // then invoke fitBounds to zoom and display markers within view
+  fitBounds(latlng); // then invoke fitBounds to zoom and display markers
+                      // within view
   setInfoWindowListener(latlng);
 }
 
 /**
- * creates and positions markers
- * sets zoom so that all markers visible
+ * creates and positions markers sets zoom so that all markers visible
  */
 function fitBounds(latlngStr) {
   var bounds = new google.maps.LatLngBounds();
@@ -75,7 +74,7 @@ function fitBounds(latlngStr) {
 function setInfoWindowListener(latlngStr) {
   var infowindow = new google.maps.InfoWindow();
   for (i = 0; i < latlng.length; i++) {
-    /*respond to click on marker by displaying infowindow text*/
+    /* respond to click on marker by displaying infowindow text */
     var marker = markers[i];
     google.maps.event.addListener(marker, 'click', (function(marker, i) {
       return function() {
@@ -86,14 +85,15 @@ function setInfoWindowListener(latlngStr) {
   }
 }
 /**
- * A helper function to convert the latlng string to individual numbers
- * and thence to a google.maps.LatLng object
- * @param str str is list of strings : username, lat, lon    
- * str[0] is description                
- * str[1] is latitude                              
- * str[2] is longitude                             
+ * A helper function to convert the latlng string to individual numbers and
+ * thence to a google.maps.LatLng object
  * 
- * @param The object 'str' holding an individual marker data set
+ * @param str
+ *          str is list of strings : username, lat, lon str[0] is description
+ *          str[1] is latitude str[2] is longitude
+ * 
+ * @param The
+ *          object 'str' holding an individual marker data set
  * @return A google.maps.LatLng object containing the marker coordinates.
  */
 function getLatLng(str) {

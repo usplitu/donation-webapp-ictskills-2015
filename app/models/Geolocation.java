@@ -19,8 +19,6 @@ public class Geolocation extends Model
   public String latitude;
   public String longitude;
 
-  // OneToMany as a Geolocation could have many users e.g. 2 users in same
-  // apartment building
   @OneToMany(mappedBy = "geolocate", cascade = CascadeType.ALL)
   List<User> users = new ArrayList<User>();
 
@@ -31,8 +29,10 @@ public class Geolocation extends Model
     this.longitude = longitude;
   }
 
-  // used in EditProfile.java where a User's state and zip has been changed
-  // the lat and lng must also be changed
+  /**
+   * used in EditProfile.java where a User's state and zip have been changed the
+   * lat and lng must also be changed
+   */
   public static Geolocation findById(Integer id)
   {
     return find("id", id).first();

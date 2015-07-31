@@ -28,8 +28,6 @@ public class User extends Model
   public String city;
   public String zip;
 
-  // ManyToOne as a Geolocation could have many users e.g. 2 users in same
-  // apartment building
   @ManyToOne
   public Geolocation geolocate;
 
@@ -43,7 +41,7 @@ public class User extends Model
     this.usaCitizen = usaCitizen;
     this.firstName = firstName;
     this.lastName = lastName;
-    this.email = email;
+    this.email = email.toLowerCase(); // always save in lowercase
     this.password = password;
     this.age = age;
     this.state = state;

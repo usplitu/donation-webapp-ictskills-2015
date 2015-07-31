@@ -1,10 +1,12 @@
 // div container for AJAX response completely disappears
 $('#notificationBox').hide();
 
-// this was necessary when I implemented AJAX as message appears when you
-// previously had a bad login
-// You want this message to disappear when you are entering login details again
-// also hide the div container #notificationBox
+/**
+ * this was necessary when I implemented AJAX as message appears when you
+ * previously had a bad login. You want this message to disappear when
+ * you are entering login details again. Also, hide the div container
+ * #notificationBox
+ */
 $('.ui.form').click(function() {
   $('#notification').html("");
   $('#notificationBox').hide("slow");
@@ -39,10 +41,13 @@ $('.ui.form').form({
 });
 
 function submitForm() {
-  // Hit Administrator.authenticate. If login details don't match database, give
-  // error message + redisplay screen
-  // If details match database, 'correct' is returned in JSON object and next
-  // screen displayed.
+  /**
+   * Hit Administrator.authenticate. If login details don't match database, give
+   * error message + redisplay screen. 
+   * If details match database, 'correct' is returned in JSON object and next
+   * screen displayed.
+   */
+
   var formData = $('.ui.form.segment input').serialize();
   $.ajax({
     type : 'POST',
@@ -58,6 +63,7 @@ function submitForm() {
           } else {
             console.log("notification: " + response.inputdata);
             $('#notification').html(response.inputdata);
+            $('#notification').css('color', 'red');
             $('#notificationBox').show("fast");
           }
         }

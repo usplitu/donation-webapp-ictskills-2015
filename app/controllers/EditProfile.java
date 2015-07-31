@@ -35,8 +35,10 @@ public class EditProfile extends Controller
     String textString = "";
     User user = User.findById(id);
 
-    // Check what details have changed and build a string to send to log of old
-    // and new values
+    /**
+     * Check what details have changed and build a string to send to log of old
+     * and new values
+     */
     if (!firstName.isEmpty())
     {
       textString += "First Name: old: " + user.firstName + " new: " + firstName;
@@ -73,10 +75,11 @@ public class EditProfile extends Controller
       user.addr2 = addr2;
     }
 
-    // zip and state must be changed in unison so get correct geolocation and
-    // rewrite in this situation
-    // so no need to check if zip has changed or state has changed - just one
-    // will do
+    /**
+     * zip and state must be changed in unison so get correct geolocation and
+     * rewrite in this situation. No need to check if zip has changed and state
+     * has changed - just one will do
+     */
     if (!zip.isEmpty())
     {
       textString += " Zip: old: " + user.zip + " new: " + zip;
@@ -93,16 +96,15 @@ public class EditProfile extends Controller
       user.age = age;
     }
 
-    // only write to log if at least 1 field has been changed i.e. textString
-    // has been built or give an error message
+    /**
+     * only write to log if at least 1 field has been changed i.e. textString
+     * has been built + update user
+     */
+
     if (!textString.isEmpty())
     {
       user.save();
       Logger.info(user.firstName + "'s details changed " + textString);
-    }
-    else
-    {
-      renderText("No Profile Information has been changed! Press cancel from Edit Profile screen or change details");
     }
 
     DonationController.index();

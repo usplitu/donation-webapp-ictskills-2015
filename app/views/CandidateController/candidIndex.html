@@ -11,56 +11,61 @@
     </div>   
   </h2>   
 </section>
-<section class="ui form segment" id="background">  
-  <form action="/candidregister" method="POST" class="ui form">    
-    <div class="ui fluid form segment" id="bckgrdnoshad">   
-      <div class="two fields">
-        <div class="field">
-          <label>First Name:</label>
-          <input placeholder="First Name" type="text" name="firstName">
-        </div>
-        <div class="field">
-          <label>Last Name:</label>
-          <input placeholder="Last Name" type="text" name="lastName">
+<section class="ui segment" id="background">  
+  <!-- Used before AJAX <form action="/candidregister" method="POST" class="ui form segment"> -->
+  <form class="ui form segment" id="bckgrdnoshad">       
+    <div class="two fields">
+      <div class="field">
+        <label>First Name:</label>
+        <input placeholder="First Name" type="text" name="firstName">
+      </div>
+      <div class="field">
+        <label>Last Name:</label>
+        <input placeholder="Last Name" type="text" name="lastName">
+      </div>        
+    </div> <!-- two fields firstName lastName -->      
+    <div class="two fields">
+      <div class="field">
+        <label>Email:</label>
+        <input placeholder="Email" type="text" name="email">
+      </div>
+      <div class="field">
+        <label>Password:</label>
+        <div class="ui left icon input">
+          <input type="password" name="password">
+          <i class="lock icon"></i>
         </div>        
-      </div> <!-- two fields firstName lastName -->      
-      <div class="two fields">
-        <div class="field">
-          <label>Email:</label>
-          <input placeholder="Email" type="text" name="email">
-        </div>
-        <div class="field">
-          <label>Password:</label>
-          <div class="ui left icon input">
-            <input type="password" name="password">
-            <i class="lock icon"></i>
-          </div>        
-        </div>
-      </div><!--  two fields for email/password -->  
-      <div class="two fields">
-        <div class="field">
-          <label>Donation Target Amount ($):</label>
-          <input placeholder="Donation Target Amount ($)" type="number" name="donationTarget">
-        </div>	
-        <div class="field">   
-          <label>Select Candidate Office:</label>          
-          <div class = "ui selection dropdown">          
-            <i class="world icon"></i>         
-		    <input name="titleOfOffice" type="hidden">
-	        <div class="default text">Choose an Office </div>
-		    <i class="dropdown icon"></i>
-	        <div class="menu">
-		      #{list items:offices, as:'office'}
-			    <div class = "item" data-value="${office.officeTitle}">${office.officeTitle}</div>			 
-			  #{/list}		  
-            </div> <!--  div class = "menu" -->
-	      </div> <!-- ui selection dropdown -->
-	    </div> <!-- field for office dropdown -->	      
-	  </div> <!-- two fields for office/donation target --> 	  
-      <button class="ui blue submit button">Signup</button>
-      <div class="ui error message"></div>
-      <img class="ui tiny right floated image" src="/public/images/usaflagsmall.png">
-    </div> <!-- ui fluid form segment -->
+      </div>
+    </div><!--  two fields for email/password -->  
+    <div class="two fields">
+      <div class="field">
+        <label>Donation Target Amount ($):</label>
+        <input placeholder="Donation Target Amount ($)" type="number" name="donationTarget">
+      </div>	
+      <div class="field">   
+        <label>Select Candidate Office:</label>          
+        <div class = "ui selection dropdown">          
+          <i class="world icon"></i>         
+		  <input name="titleOfOffice" type="hidden">
+	      <div class="default text">Choose an Office </div>
+		  <i class="dropdown icon"></i>
+	      <div class="menu">
+		    #{list items:offices, as:'office'}
+			  <div class = "item" data-value="${office.officeTitle}">${office.officeTitle}</div>			 
+			#{/list}		  
+          </div> <!--  div class = "menu" -->
+	    </div> <!-- ui selection dropdown -->
+	  </div> <!-- field for office dropdown -->	      
+	</div> <!-- two fields for office/donation target --> 
+	     
+    <!--   AJAX notification notificationbox introduced to hide entire container in candidIndex.js -->
+    <div class="ui fluid segment" id="notificationBox">
+      <div id="notification"></div>
+    </div> 
+    	  
+    <button class="ui blue submit button">Signup</button>
+    <div class="ui error message"></div>
+    <img class="ui tiny right floated image" src="/public/images/usaflagsmall.png">   
   </form>
 </section> 
 

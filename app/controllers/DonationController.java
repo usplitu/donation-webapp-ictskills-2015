@@ -11,20 +11,22 @@ import models.*;
 
 public class DonationController extends Controller
 {
-  // extra security that the admin cannot get into donations.
-  // Accounts.getCurrentUser()
-  // checks logged_in_userid but when an admin is logged in, logged_in_adminid
-  // is set
-  // in Administrator.java controller
-  // so admin cannot fraudulently get in by knowing the URL.
+  /**
+   * extra security that the admin cannot get into user part of donations.
+   * Accounts.getCurrentUser() checks logged_in_userid but when an admin is
+   * logged in, logged_in_adminid is set in Administrator.java controller so
+   * admin cannot fraudulently get in by knowing the URL.
+   */
+
   public static void index()
   {
-    // as of story-09, this method is now called only when a User clicks on the
-    // 'Make Donation' tab.
-    // We don't need to calculate the percent target achieved or show a
-    // candidate name on first display so fake them.
-    // the user hasn't selected yet from the candidate dropdown. When they do,
-    // new method indexRealProgress is called.
+    /**
+     * as of story-09, this method is now called only when a User clicks on the
+     * 'Make Donation' tab. We don't need to calculate the percent target
+     * achieved or show a candidate name on first display. The user hasn't
+     * selected yet from the candidate dropdown. When they do, new method
+     * indexRealProgress is called on a successful donation.
+     */
 
     User user = Accounts.getCurrentUser();
 
@@ -38,12 +40,12 @@ public class DonationController extends Controller
       // render candidates for dropdown
       List<Candidate> candidates = Candidate.findAll();
 
-      // want an empty progress bar first time through before donating and no
-      // candidate name - fake them in donate.js!
-      // User passed as needed for name display on Logout tab - see nav.html
-      // When the User is logged in, I uniformly display their name on Logout
-      // tab
-      // to improve UX
+      /**
+       * want an empty progress bar first time through before donating and no
+       * candidate name - fake them in donate.js! User passed as needed for name
+       * display on Logout tab - see nav.html When the User is logged in, I
+       * uniformly display their name on Logout tab to improve UX
+       */
 
       render(user, candidates);
 
@@ -53,18 +55,18 @@ public class DonationController extends Controller
   public static void indexRealProgress(String candidateEmail, String candidateFirstName, String candidateLastName,
       Long candidateTarget)
   {
-    // as of story-09, this section gets called instead of index() after a
-    // donation as we really
-    // need to call getPercentTargetAchieved and render the index.html page
-    // passing in the real
-    // progress and candidate name. John, you may wonder why I am passing in
-    // individual candidate fields
-    // and not just using the Candidate object. The reason is that I kept
-    // getting 'Invocation TargetException'
-    // even when I had successfully accessed the Candidate object before the
-    // call. I even tried this passing in User
-    // with the same abend so my only option was to pass the individual fields I
-    // needed.
+
+    /**
+     * as of story-09, this section gets called instead of index() after a
+     * donation as we really need to call getPercentTargetAchieved and render
+     * the index.html page passing in the real progress and candidate name.
+     * John, you may wonder why I am passing in individual Candidate fields and
+     * not just using the Candidate object. The reason is that I kept getting
+     * 'Invocation TargetException' even when I had successfully accessed the
+     * Candidate object before the call. I even tried this passing in User with
+     * the same abend so my only option was to pass the individual fields I
+     * needed.
+     */
 
     User user = Accounts.getCurrentUser();
 
@@ -75,11 +77,13 @@ public class DonationController extends Controller
     }
     else
     {
-      // now get real values for the progress bar and candidate name for under
-      // it in the label
-      // after we have a donation, call this instead of index passing in
-      // candidate fields. email is used to identify donations for the candidate
-      // in question.
+
+      /**
+       * now get real values for the progress bar and candidate name for under
+       * it in the label. After we have a donation, call this instead of index
+       * passing in candidate fields. email is used to identify donations for
+       * the candidate in question
+       */
 
       String prog = getPercentTargetAchieved(candidateEmail, candidateTarget);
       String progress = prog + "%";
@@ -87,11 +91,14 @@ public class DonationController extends Controller
       Logger.info("Donation ctrler : candidate is " + fullName);
       Logger.info("Donation ctrler : percent target achieved " + progress);
 
-      // create JSON object to pass to donate.js AJAX so entire html page
-      // doesn't reload
+      /**
+       * create JSON object to pass to donate.js AJAX so entire html page
+       * doesn't reload
+       */
       JSONObject obj = new JSONObject();
       obj.put("progress", progress);
       obj.put("fullName", fullName);
+      obj.put("colorattrb", "fine");
       String value = "Your donation has been successfully registered to " + fullName + ".";
       obj.put("accepted", value);
       renderJSON(obj);
@@ -114,26 +121,35 @@ public class DonationController extends Controller
     }
     else
     {
+      // Candidate email not user typed so no need to check lowercase
       Candidate candidate = Candidate.findByEmail(candidateEmail);
 
-      // check if this donation will push a candidates donations past their
-      // target. If so, give an error message
-      // If not, continue by adding the donation and calculating progress bar.
+      /**
+       * check if this donation will push a candidates donations past their
+       * target. If so, give an error message and don't process. If not,
+       * continue by adding the donation and calculating progress bar
+       */
 
       Long total = getCandidateDonations(candidateEmail);
 
       if ((total + amountDonated) > candidate.donationTarget)
       {
-        String progress = "100%";
+        // get the real progress. Can't assume they're at 100%.
+        String prog = getPercentTargetAchieved(candidateEmail, candidate.donationTarget);
+        String progress = prog + "%";
         String fullName = candidate.firstName + " " + candidate.lastName;
 
-        // create JSON object to pass to donate.js AJAX so entire html page
-        // doesn't reload
+        /**
+         * create JSON object to pass to donate.js AJAX so entire html page
+         * doesn't reload
+         */
+
         JSONObject obj = new JSONObject();
         obj.put("progress", progress);
         obj.put("fullName", fullName);
-        String value = "Candidates donations already amount to " + total + " Can't accept a donation of "
-            + amountDonated + " as it will push them past their donation target of " + candidate.donationTarget;
+        obj.put("colorattrb", "warning");
+        String value = "Candidates donations already amount to $" + total + " . Can't accept a donation of $"
+            + amountDonated + " as it would push them past their donation target of $" + candidate.donationTarget;
         obj.put("accepted", value);
         renderJSON(obj);
 
@@ -142,12 +158,13 @@ public class DonationController extends Controller
       {
         addDonation(user, amountDonated, methodDonated, candidate);
 
-        // after a donation has been created, run the new method below to
-        // calculate progress
-        // and redisplay html. The reason why individual candidate fields
-        // are passed
-        // instead of the
-        // candidate object John, is explained in the method.
+        /**
+         * after a donation has been created, run the new method below to
+         * calculate progress and redisplay html. The reason why individual
+         * candidate fields are passed instead of the candidate object John, is
+         * explained in the method.
+         */
+
         indexRealProgress(candidateEmail, candidate.firstName, candidate.lastName, candidate.donationTarget);
       }
     }
@@ -162,13 +179,10 @@ public class DonationController extends Controller
 
   public static Long getCandidateDonations(String candidateEmail)
   {
-    // Just find the donations that pertain to
-    // the current candidate. Called both when calculating values for the
-    // progress bar
-    // (getPercentTargetAchieved) and when a User is making a donation
-    // (addDonation)
-    // as you need to check will the Candidate exceed their Target if they
-    // accept the donation
+    /**
+     * Just find the donations that pertain to the current candidate.
+     * 
+     */
 
     List<Donation> allDonations = Donation.findAll();
     Long total = 0L;
@@ -186,18 +200,20 @@ public class DonationController extends Controller
 
   public static String getPercentTargetAchieved(String candidateEmail, Long candidateTarget)
   {
-    // Just find the donations that pertain to
-    // the current candidate when calculating the progress %. Also get the
-    // candidate Target
-    // amount
+    /**
+     * Just find the donations that pertain to the current candidate when
+     * calculating the progress %. Also get the candidate Target amount
+     */
 
     // Calculate total of all Donations for the Candidate
     Long total = getCandidateDonations(candidateEmail);
     Long target = candidateTarget;
     Long percentAchieved = (total * 100 / target);
 
-    // if Candidate donations have exceeded their target amount, set
-    // percentAchieved to 100.
+    /**
+     * if Candidate donations have exceeded their target amount, set
+     * percentAchieved to 100.
+     */
     percentAchieved = percentAchieved > 100 ? 100 : percentAchieved;
     String progress = String.valueOf(percentAchieved);
     Logger.info("In getPercentTargetAchieved total " + total + " progress " + progress);

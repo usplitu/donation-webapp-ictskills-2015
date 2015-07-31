@@ -26,22 +26,17 @@ public class Report extends Controller
     }
     else
     {
-      // get 5 parameters to render. States and Donors to be unique for
-      // dropdowns
-      // so helper methods employed. donations are what is to display in the
-      // table.
-      // The other lists are for the three dropdowns to filter by.
-      // am also passing in user as I made an improvement to nav.html.
-      // The requirement had been in story-04 to only show certain screens if
-      // a user was logged in. I had previously coded this based on 'Make
-      // Donation',
-      // which only appeared if a user was logged in. Now, I've changed it based
-      // on #{if user}
-      // I've also (hopefully!) improved the UI, by putting the User name on the
-      // nav bar if they
-      // are on one of the three screens that appear if they're logged in, hence
-      // the need to pass
-      // user as a param here.
+      /**
+       * get 5 parameters to render. States and Donors to be unique for
+       * dropdowns so helper methods employed. 'donations' are what is to
+       * display in the html table. The other lists are for the three dropdowns
+       * to filter by. Also, passing in user as I made an improvement to
+       * nav.html. The requirement had been in story-04 to only show certain
+       * screens if a user was logged in. I coded this based on #{if user}. I've
+       * also (hopefully!) improved the UI, by putting the User name on the nav
+       * bar if they are on one of the screens that appear if they're logged in,
+       * hence the need to pass user as a param here.
+       */
 
       List<Donation> donations = Donation.findAll();
       List<Candidate> candidates = Candidate.findAll();
@@ -49,13 +44,14 @@ public class Report extends Controller
       List<Donation> uniqueDonations = findDonors();
       renderTemplate("Report/renderReport.html", donations, candidates, uniqueStates, uniqueDonations, user);
     }
-
   }
 
   public static void filterCandidates(String candidateEmail)
   {
-    // see above in renderReport for explanation of why I am getting user and
-    // passing it as a param
+    /**
+     * see above in renderReport for explanation of why I am getting user and
+     * passing it as a param
+     */
 
     User user = Accounts.getCurrentUser();
 
@@ -67,10 +63,12 @@ public class Report extends Controller
     else
     {
 
-      // pass donations to the rendering template but first get all donations
-      // and match email to the candidate email to fill donations
-      // renderTemplate to renderReport.html expects the parameters to be the
-      // same from every method
+      /**
+       * pass donations to the rendering template but first get all donations
+       * and match email to the candidate email to fill donations renderTemplate
+       * to renderReport.html expects the parameters to be the same from every
+       * method
+       */
       List<Donation> donations = new ArrayList<Donation>();
       List<Donation> allDonations = Donation.findAll();
 
@@ -83,9 +81,10 @@ public class Report extends Controller
         }
       }
 
-      // the three below need to be filled to populate the three dropdowns at
-      // page
-      // bottom
+      /**
+       * the three lists below need to be filled to populate the three dropdowns
+       * at bottom of html page
+       */
       List<Candidate> candidates = Candidate.findAll();
       List<String> uniqueStates = findStates();
       List<Donation> uniqueDonations = findDonors();
@@ -95,9 +94,10 @@ public class Report extends Controller
 
   public static void filterDonors(String donorEmail)
   {
-    // see above in renderReport for explanation of why I am getting user and
-    // passing it as a param
-
+    /**
+     * see above in renderReport for explanation of why I am getting user and
+     * passing it as a param
+     */
     User user = Accounts.getCurrentUser();
 
     if (user == null)
@@ -107,11 +107,12 @@ public class Report extends Controller
     }
     else
     {
-
-      // pass donations to the rendering template but first get all donations
-      // and match email to the donor email to fill donations
-      // renderTemplate to renderReport.html expects the parameters to be the
-      // same from every method
+      /**
+       * pass donations to the rendering template but first get all donations
+       * and match email to the donor email to fill donations renderTemplate to
+       * renderReport.html expects the parameters to be the same from every
+       * method
+       */
       List<Donation> donations = new ArrayList<Donation>();
       List<Donation> allDonations = Donation.findAll();
 
@@ -124,9 +125,10 @@ public class Report extends Controller
         }
       }
 
-      // the three below need to be filled to populate the three dropdowns at
-      // page
-      // bottom
+      /**
+       * the three lists below need to be filled to populate the three dropdowns
+       * at the end of the html page
+       */
       List<Candidate> candidates = Candidate.findAll();
       List<String> uniqueStates = findStates();
       List<Donation> uniqueDonations = findDonors();
@@ -136,8 +138,10 @@ public class Report extends Controller
 
   public static void filterStates(String state)
   {
-    // see above in renderReport for explanation of why I am getting user and
-    // passing it as a param
+    /**
+     * see above in renderReport for explanation of why I am getting user and
+     * passing it as a param
+     */
 
     User user = Accounts.getCurrentUser();
 
@@ -148,10 +152,12 @@ public class Report extends Controller
     }
     else
     {
-      // pass donations to the rendering template but first get all donations
-      // and match state to the state parameter passed to fill donations array.
-      // renderTemplate to renderReport.html expects the parameters to be the
-      // same from every method
+      /**
+       * pass donations to the rendering template but first get all donations
+       * and match state to the state parameter passed to fill donations array.
+       * renderTemplate to renderReport.html expects the parameters to be the
+       * same from every method
+       */
       List<Donation> donations = new ArrayList<Donation>();
       List<Donation> allDonations = Donation.findAll();
 
@@ -164,9 +170,10 @@ public class Report extends Controller
         }
       }
 
-      // the three below need to be filled to populate the three dropdowns at
-      // page
-      // bottom
+      /**
+       * the three lists below need to be filled to populate the three dropdowns
+       * at the end of the html page
+       */
       List<Candidate> candidates = Candidate.findAll();
       List<String> uniqueStates = findStates();
       List<Donation> uniqueDonations = findDonors();
@@ -176,8 +183,10 @@ public class Report extends Controller
 
   private static List<String> findStates()
   {
-    // return unique list of states (of Users) to calling module by first
-    // putting them in HashSet
+    /**
+     * return unique list of states (of Users) to calling module by first
+     * putting them in HashSet
+     */
     Set<String> states = new HashSet<String>();
     List<User> users = User.findAll();
 
@@ -193,15 +202,20 @@ public class Report extends Controller
 
   private static List<Donation> findDonors()
   {
-    // return unique list of donors to calling module by first
-    // putting them in HashSet
+    /**
+     * return unique list of donors to calling module by first putting them in
+     * HashSet
+     */
+
     Set<String> emailSet = new HashSet<String>();
     List<Donation> listDonations = new ArrayList<Donation>();
     List<Donation> everyDonation = Donation.findAll();
 
-    // cycle through everyDonation and if a User email is unique i.e. would be
-    // added to the HashSet, then add that donation to the donation list to be
-    // returned
+    /**
+     * cycle through everyDonation and if a User email is unique i.e. would be
+     * added to the HashSet, then add that donation to the donation list to be
+     * returned.
+     */
 
     for (Donation donations : everyDonation)
     {
@@ -213,5 +227,4 @@ public class Report extends Controller
 
     return listDonations;
   }
-
 }

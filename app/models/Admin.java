@@ -19,12 +19,14 @@ public class Admin extends Model
   public String username;
   public String password;
 
-  // mapped the Admin to the Candidates and Offices they created as need to link
-  // them to some tables in system.
-  // In the future, more fields may be added to the Admin model, that extra
-  // future functionality might require
-  // allow for that possibility. Also different tiers of Admin might be required
-  // with different levels of access
+  /**
+   * mapped the Admin to the Candidates and Offices they created as need to link
+   * them to some tables in system. In the future, more fields may be added to
+   * the Admin model, that extra future functionality might require. Allow for
+   * that possibility. Also different tiers of Admin might be required with
+   * different levels of access
+   */
+
   @OneToMany(mappedBy = "adminBy1", cascade = CascadeType.ALL)
   public List<Office> officeCreated = new ArrayList<Office>();
 
